@@ -1,5 +1,11 @@
 # groupomania
 
+VUE 2
+VUE CLI 4.5.15
+DART SASS
+VUE ROUTEUR
+VUE X
+
 ## Project setup
 ```
 npm install
