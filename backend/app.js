@@ -13,18 +13,8 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/', (req, res, next) => {
-    const test = [
-      {
-        _id: 'test _id',
-        title: 'test title pour mon nouvel API',
-        description: 'Ceci est une description',
-        userId: 'test userID',
-      },
-     
-    ];
-    res.status(200).json(test);
-  });
+app.use(express.json()); // Permet de ne plus utiliser body-parser qui est inclut à présent dans Express
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/auth', userRoutes);  
 

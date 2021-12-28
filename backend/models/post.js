@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     content: DataTypes.STRING,
     attachment: DataTypes.STRING,
-    likes: DataTypes.INTEGER
+    likesCount: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'post',
