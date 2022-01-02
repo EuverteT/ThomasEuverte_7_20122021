@@ -22,6 +22,11 @@ module.exports = {
           key: 'id'
         }
       },
+      likeValue: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        default: 0
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
