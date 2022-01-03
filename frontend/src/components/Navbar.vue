@@ -51,6 +51,11 @@ export default {
       margin: 1rem;
       font-weight: bold;
       padding: 0.9rem;
+
+      @include mobile {
+        padding: 0;
+      }
+
       &:hover,
       &:focus {
         cursor: pointer;
