@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Navbar />
     <h1>Bienvenue sur votre nouveau réseau social!</h1>
     <div class="home">
       <div class="welcomeAnim">
@@ -21,10 +22,13 @@
 
 <script>
 // @ is an alias to /src
+import Navbar from "@/components/Navbar.vue";
 
 export default {
   name: "Home",
-  components: {},
+  components: {
+    Navbar,
+  },
 };
 </script>
 
@@ -42,7 +46,7 @@ h2 {
   &:hover {
     animation-play-state: paused;
   }
-  @media (max-width: 900px) {
+  @media (max-width: 1025px) {
     animation: none;
     transform: translateY(-400px);
     width: 100%;
@@ -51,7 +55,7 @@ h2 {
 .welcomeAnim {
   display: flex;
   width: 100%;
-  @media (max-width: 900px) {
+  @media (max-width: 1025px) {
     flex-direction: column;
   }
 }
