@@ -30,21 +30,38 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-.navbar{
+<style lang="scss">
+@import "./styles/variables";
+@import "./styles/mixins";
+
+.navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-    &__container {
+  &__container {
     display: flex;
-    @media (max-width: 1025px) {
+    @include mobile {
       flex-direction: column;
     }
+
+    &--link {
+      color: black;
+      text-decoration: none;
+      margin: 1rem;
+      font-weight: bold;
+      padding: 0.9rem;
+      &:hover,
+      &:focus {
+        cursor: pointer;
+        border: 1px;
+        background-color: $rouge;
+        border-radius: 5px;
+      }
     }
-    &__smallLogo {
+  }
+  &__smallLogo {
     max-height: 100px;
   }
 }
-
 </style>
