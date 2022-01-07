@@ -31,24 +31,24 @@ export default {
     return {
       title: this.title,
       content: this.content,
-      userId: ""
-    }
-     
+      userId: "",
+    };
   },
 
   methods: {
     createPost() {
+      const connectedId = JSON.parse(localStorage.getItem("userId"));
 
       axios
         .post("http://localhost:3000/api/post", {
           body: {
             title: this.title,
             content: this.content,
-            userId: ""
+            userId: connectedId,
           },
           headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem("token"),
-            'Content-Type': 'application/json'
+            Authorization: "Bearer " + localStorage.getItem("token"),
+            "Content-Type": "application/json",
           },
         })
         .then((res) => {
