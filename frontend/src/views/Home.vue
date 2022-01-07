@@ -2,6 +2,7 @@
   <div>
     <Navbar />
     <h1>Bienvenue sur votre nouveau réseau social!</h1>
+
     <div class="home">
       <div class="welcomeAnim">
         <img
@@ -14,20 +15,34 @@
           alt="logo de Groupomania"
           src="../assets/icon-left-font.svg"
         />
-        <h2>En cours de construction....</h2>
       </div>
     </div>
+    <section>
+      <div>{{ copyright }}</div>
+      <div>Etudiant: {{ etudiant }}</div>
+    </section>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import Navbar from "@/components/Navbar.vue";
+import { mapGetters, mapState } from "vuex";
 
 export default {
   name: "Home",
   components: {
     Navbar,
+  },
+  computed: {
+    ...mapGetters({
+      copyright: "copyright",
+    }),
+    ...mapState({
+      organismeDeFormation: "OpenClassRooms",
+      etudiant: "etudiant",
+      projets: "projets",
+    }),
   },
 };
 </script>
@@ -35,30 +50,23 @@ export default {
 <style scoped lang="scss">
 @import "./styles/main.scss";
 
-
-h1 {
-  background-color: rgb(226, 220, 220);
-}
 h2 {
   //background-color: rgb(204, 148, 148);
-  animation: spinner-translate-logo 3000ms linear infinite;
+  animation: spinner-opacity-logo 3000ms linear infinite;
   overflow: hidden;
   width: 25%;
   align-self: center;
   color: black;
-  &:hover {
-    animation-play-state: paused;
-  }
-  @media (max-width: 1025px) {
-    animation: none;
-    transform: translateY(-400px);
+  @include mobile {
+    animation: spinner-opacity2-logo 4000ms linear infinite;
     width: 100%;
+    max-height: 150px;
   }
 }
 .welcomeAnim {
   display: flex;
   width: 100%;
-  @media (max-width: 1025px) {
+  @include mobile {
     flex-direction: column;
   }
 }
@@ -69,14 +77,19 @@ h2 {
     width: 50%;
     animation: spinner-rotate-logo 3000ms linear infinite;
     margin: 5rem;
+    @include mobile {
+      display: none;
+      animation: none;
+    }
   }
   &__smallLogo {
     max-width: 400px;
     width: 25%;
-    animation: spinner-translate-logo 3000ms linear infinite;
-    @media (max-width: 900px) {
-      animation: spinner-translateY-logo 4000ms linear infinite;
+    animation: spinner-opacity-logo 3000ms linear infinite;
+    @include mobile {
+      animation: spinner-opacity2-logo 4000ms linear infinite;
       width: 100%;
+      max-height: 200px;
     }
   }
 }
@@ -90,9 +103,8 @@ h2 {
     transform: rotate(360deg);
   }
 }
-@keyframes spinner-translate-logo {
+@keyframes spinner-opacity-logo {
   0% {
-    transform: translate(100%);
     opacity: 0;
   }
 
@@ -101,28 +113,15 @@ h2 {
   }
 
   100% {
-    transform: translate(0%);
   }
 }
-@keyframes spinner-translateY-logo {
+@keyframes spinner-opacity2-logo {
   0% {
-    transform: translateY(-380px);
     opacity: 0;
-  }
-  25% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 1;
-    transform: translateY(-300px);
   }
 
-  80% {
-    opacity: 0;
-  }
   100% {
-    transform: translateY(-280px);
-    opacity: 0;
+    opacity: 1;
   }
 }
 </style>

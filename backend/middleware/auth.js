@@ -1,12 +1,19 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
+    //const sessionId = localStorage.getItem('userId'); // localStorage is not defined, voir pour mettre l'Id dans le state?
+    //console.log("AUTH connectedUserId", sessionId);
+
     try {
-        const token = req.headers.authorization.split(' ')[1]; // Récupération du token dans le header authorization
-        const decodedToken = jwt.verify(token, process.env.TOKEN); // On décode le token avec la fonction VERIFY
-        const userId = decodedToken.userId; // On récupère le userId présent dans le token
-        req.auth = { userId };
-        if (req.body.userId && req.body.userId !== userId) { // On vérifie le userId du corps de la requete avec celui du token
+        
+        const token = req.body.headers.Authorization.split(' ')[1];
+        console.log("AUTH token", token);
+        const decodedToken = jwt.verify(token, process.env.TOKEN);
+        console.log("AUTH decodedToken", decodedToken)
+        const userId = decodedToken.userId;
+        console.log("AUTH decodedToken.userId", decodedToken.userId);
+        
+        if (connectedUserId !== userId) {
             throw 'User ID non valable!';
         } else {
             next();

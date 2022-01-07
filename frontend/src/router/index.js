@@ -29,6 +29,11 @@ const routes = [
     path: '/logoutModale',
     name: 'LogoutModale',
     component: () => import('../views/LogoutModale.vue')
+  },
+  {
+    path: '/post',
+    name: 'Post',
+    component: () => import('../views/Post.vue')
   }
 ]
 

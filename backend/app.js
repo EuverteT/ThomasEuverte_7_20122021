@@ -5,6 +5,7 @@ require('dotenv').config();
 const app = express();
 
 const userRoutes = require('./routes/user');
+const postRoutes = require('./routes/post');
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -16,6 +17,8 @@ app.use((req, res, next) => {
 app.use(express.json()); // Permet de ne plus utiliser body-parser qui est inclut à présent dans Express
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/auth', userRoutes);  
+app.use('/api/auth', userRoutes);
+app.use('/api/post', postRoutes);
+
 
 module.exports = app;
