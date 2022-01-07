@@ -24,6 +24,11 @@ const routes = [
     path: '/account',
     name: 'Account',
     component: () => import('../views/Account.vue')
+  },
+  {
+    path: '/logoutModale',
+    name: 'LogoutModale',
+    component: () => import('../views/LogoutModale.vue')
   }
 ]
 

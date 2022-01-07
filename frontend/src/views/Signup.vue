@@ -16,16 +16,12 @@
         </div>
 
         <div class="signup__form__input">
-          <label for="lastName" class="signup__form__input__label"
-            >Nom</label
-          >
+          <label for="lastName" class="signup__form__input__label">Nom</label>
           <input type="text" v-model="lastName" id="lastName" name="lastName" />
         </div>
 
         <div class="signup__form__input">
-          <label for="email" class="signup__form__input__label"
-            >Email</label
-          >
+          <label for="email" class="signup__form__input__label">Email</label>
           <input type="email" v-model="email" id="email" name="email" />
         </div>
 
@@ -89,7 +85,6 @@ export default {
 <style scoped lang="scss">
 @import "./styles/main.scss";
 
-
 .signup {
   display: flex;
   justify-content: space-around;
@@ -105,7 +100,7 @@ export default {
     padding: 3rem 0;
 
     @include mobile {
-        width: 85%;
+      width: 85%;
     }
 
     &__input {
@@ -116,6 +111,7 @@ export default {
       &__label {
         text-align: start;
         font-weight: bold;
+        margin-bottom: 0.5rem;
       }
     }
     &__button {

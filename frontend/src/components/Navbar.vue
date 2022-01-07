@@ -20,19 +20,36 @@
       <router-link class="navbar__container--link" to="/login"
         >Se connecter</router-link
       >
+      <div>
+        <button @click="disconnect" class="navbar__container--link">
+          Déconnexion
+        </button>
+        <!-- <LogoutModale /> -->
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+//import LogoutModale from "../views/LogoutModale.vue"; à modifier pour que la deconnexion se fasse au clic sur OUI de la modale
+
 export default {
   name: "Navbar",
+  components: {
+    //LogoutModale,
+  },
+  
+  methods: {
+    disconnect() {
+      localStorage.clear();
+      this.$router.push("/");
+    },
+  },
 };
 </script>
 
 <style lang="scss">
 @import "./styles/main.scss";
-
 
 .navbar {
   display: flex;

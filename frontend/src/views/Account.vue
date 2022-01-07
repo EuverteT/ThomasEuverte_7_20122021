@@ -1,21 +1,57 @@
 <template>
   <div>
     <Navbar />
+
     <div class="account">
-      <div class="welcome">
-        <div class="welcome__Message">
-          <h2>Bienvenue {{ firstName }} {{ lastName }},</h2>
-        </div>
-        <div class="welcome__Message">
-          <h3>
-            Vous êtes le {{ userId }}ième utilisateur de notre nouveau réseau
-            social! Merci à vous et bonne navigation.
-          </h3>
-        </div>
-      </div>
       <div class="options">
-        <div class="modifyAccount">Modifier mon compte</div>
-        <div class="deleteAccount">Supprimer mon compte</div>
+        <router-link class="navbar__container--link" to="/logoutModale"
+          >Modifier mon compte</router-link
+        >
+        <router-link class="navbar__container--link" to="/logoutModale"
+          >Supprimer mon compte</router-link
+        >
+        <router-link class="navbar__container--link" to="/post"
+          >Poster un article</router-link
+        >
+      </div>
+      <div class="welcome">
+        <section v-if= "isAdmin === 'true'" >
+          <div class="welcome__Message">
+            <h1>Bienvenue Administrateur,</h1>
+          </div>
+          <div class="welcome__Message">
+            <h3>Supprimer un compte</h3>
+          </div>
+          <div class="welcome__Message">
+            <h3>Supprimer un post</h3>
+          </div>
+          <div class="welcome__Message">
+            <h3>Supprimer tous les posts d'un compte</h3>
+          </div>
+        </section>
+        <section v-else>
+          <div class="welcome__Message">
+            <h2>Bienvenue {{ firstName }} {{ lastName }},</h2>
+          </div>
+          <div class="welcome__Message">
+            <h3>Votre profil</h3>
+          </div>
+          <div class="welcome__Message">
+            <h3>Prénom: {{ firstName }}</h3>
+          </div>
+          <div class="welcome__Message">
+            <h3>Nom: {{ lastName }}</h3>
+          </div>
+          <div class="welcome__Message">
+            <h3>Email: {{ email }}</h3>
+          </div>
+          <div class="welcome__Message">
+            <h3>Numéro d'inscription: {{ userId }}</h3>
+          </div>
+          <div class="welcome__Message">
+            <h3>Vous n'ếtes pas administrateur du site.</h3>
+          </div>
+        </section>
       </div>
     </div>
   </div>
@@ -37,6 +73,8 @@ export default {
       firstName: localStorage.getItem("firstName"),
       lastName: localStorage.getItem("lastName"),
       email: localStorage.getItem("email"),
+      isAdmin: localStorage.getItem("isAdmin")
+            
     };
   },
 
@@ -44,6 +82,7 @@ export default {
     this.getAccount();
   },
   methods: {
+
     getAccount() {
       const id = localStorage.getItem("userId");
 
@@ -54,9 +93,8 @@ export default {
           },
         })
         .then((user) => (this.user = user.data))
-        .catch((error) => {
-          console.log(error);
-        });
+        .then((user) => console.log(user))
+        .catch((error) => { console.log(error); });
     },
   },
 };
@@ -65,60 +103,27 @@ export default {
 <style scoped lang="scss">
 @import "./styles/main.scss";
 
+.account {
+  display: flex;
+  justify-content: space-between;
+}
 
 .welcome {
   @include flex-column;
-  width: 50%;
+  width: 75%;
+
   &__Message {
-    width: 50%;
-    text-align: start;
-    margin: 0.5rem 0;
     background-color: #f2f2f2;
+    border: 1px solid;
+    margin: 1rem 0;
   }
 }
 
 .options {
-  width: 50%;
   background-color: #f2f2f2;
-}
-
-.account {
   display: flex;
-  &__form {
-    @include flex-column;
-    background-color: #f2f2f2;
-    align-items: center;
-    width: 50%;
-    border: 3px solid #3f3d56;
-    border-radius: 5px;
-    padding: 3rem 0;
-
-    @include mobile {
-      width: 85%;
-    }
-
-    &__input {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 2rem;
-      width: 70%;
-      &__label {
-        text-align: start;
-        font-weight: bold;
-      }
-    }
-    &__button {
-      border: 1px solid $hard-grey;
-      border-radius: 5px;
-      font-weight: bold;
-      padding: 0.9rem;
-      &:hover,
-      &:focus {
-        border: 1px solid $hard-grey;
-        background-color: $rouge;
-        cursor: pointer;
-      }
-    }
-  }
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 </style>
