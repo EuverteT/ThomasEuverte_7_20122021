@@ -63,8 +63,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "./styles/variables";
-@import "./styles/mixins";
+@import "./styles/main.scss";
+
 
 .welcome {
   @include flex-column;

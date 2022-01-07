@@ -33,6 +33,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "./styles/main.scss";
+
+
 h1 {
   background-color: rgb(226, 220, 220);
 }
