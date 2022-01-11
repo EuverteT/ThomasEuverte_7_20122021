@@ -16,7 +16,7 @@
 
 <script>
 export default {
-    name: "LogoutModale",
+    name: "Modale",
 }
 
 </script>
