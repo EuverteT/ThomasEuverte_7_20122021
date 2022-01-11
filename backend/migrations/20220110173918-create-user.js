@@ -29,6 +29,16 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false
       },
+      isActive: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
+      keepConnected: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
