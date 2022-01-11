@@ -1,8 +1,7 @@
 <template>
   <div>
-    <Navbar />
-    <h1>Bienvenue sur votre nouveau réseau social!</h1>
-
+    <Header />
+    
     <div class="home">
       <div class="welcomeAnim">
         <img
@@ -16,23 +15,30 @@
           src="../assets/icon-left-font.svg"
         />
       </div>
+    
     </div>
     <section>
+      <div class="welcomeMessage">
+        Groupomania vous souhaite une bonne année 2022! Nous avons pour cette occasion le plaisir de
+        vous proposer un réseau social afin que chaque collaborateur puisse interagir avec les autres,
+        partager, proposer... N'attendez plus pour vous inscrire et commencer à en profiter!
+      </div>
+    </section>
+    <section>
       <div>{{ copyright }}</div>
-      <div>Etudiant: {{ etudiant }}</div>
     </section>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Navbar from "@/components/Navbar.vue";
+import Header from "@/components/Header.vue";
 import { mapGetters, mapState } from "vuex";
 
 export default {
   name: "Home",
   components: {
-    Navbar,
+    Header,
   },
   computed: {
     ...mapGetters({
@@ -40,8 +46,6 @@ export default {
     }),
     ...mapState({
       organismeDeFormation: "OpenClassRooms",
-      etudiant: "etudiant",
-      projets: "projets",
     }),
   },
 };
@@ -50,25 +54,18 @@ export default {
 <style scoped lang="scss">
 @import "./styles/main.scss";
 
-h2 {
-  //background-color: rgb(204, 148, 148);
-  animation: spinner-opacity-logo 3000ms linear infinite;
-  overflow: hidden;
-  width: 25%;
-  align-self: center;
-  color: black;
-  @include mobile {
-    animation: spinner-opacity2-logo 4000ms linear infinite;
-    width: 100%;
-    max-height: 150px;
-  }
-}
 .welcomeAnim {
   display: flex;
   width: 100%;
   @include mobile {
     flex-direction: column;
   }
+}
+
+.welcomeMessage {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0 5rem 5rem 2rem;
 }
 
 .home {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar />
+    <Header />
     <div class="signup">
       <form @submit.prevent="signup" class="signup__form">
         <div class="signup__form__input">
@@ -45,14 +45,14 @@
 
 <script>
 // @ is an alias to /src
-import Navbar from "@/components/Navbar.vue";
+import Header from "@/components/Header.vue";
 
 import axios from "axios";
 
 export default {
   name: "Signup",
   components: {
-    Navbar,
+    Header,
   },
   data() {
     return {
@@ -65,7 +65,7 @@ export default {
   methods: {
     signup() {
       axios
-        .post("http://localhost:3000/api/auth/signup", {
+        .post("http://localhost:3000/api/user/signup", {
           firstName: this.firstName,
           lastName: this.lastName,
           email: this.email,

@@ -1,2 +1,13 @@
 @import "variables";
 @import "mixins";
+
+h1 {
+    font-style:  italic;
+    font-weight: bold;
+    text-align: left;
+    padding: 0 1rem;
+}
+
+body {
+    margin: 0;
+}

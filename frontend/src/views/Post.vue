@@ -1,63 +1,24 @@
 <template>
   <div>
-    <Navbar />
-    <form @submit.prevent="createPost" class="post">
-      <h1>Poster votre article</h1>
-      <label> Titre: <input v-model="title" /> </label>
-      <br /><br />
-      <label> Contenu: </label>
-      <br /><br />
-      <textarea
-        v-model="content"
-        placeholder="Que souhaitez vous partager?"
-        rows="5"
-        cols="50"
-      ></textarea>
-      <button type="submit">Publier</button>
-    </form>
+    <Header />
+    <div class="post">
+      <LeftNavbar />
+      <CreatePost />
+    </div>
   </div>
 </template>
 
 <script>
-import Navbar from "../components/Navbar.vue";
-import axios from "axios";
+import Header from "../components/Header.vue";
+import LeftNavbar from "../components/LeftNavbar.vue";
+import CreatePost from "../components/CreatePost.vue";
 
 export default {
   name: "Post",
   components: {
-    Navbar,
-  },
-  data() {
-    return {
-      title: this.title,
-      content: this.content,
-      userId: "",
-    };
-  },
-
-  methods: {
-    createPost() {
-      const connectedId = JSON.parse(localStorage.getItem("userId"));
-
-      axios
-        .post("http://localhost:3000/api/post", {
-          body: {
-            title: this.title,
-            content: this.content,
-            userId: connectedId,
-          },
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-            "Content-Type": "application/json",
-          },
-        })
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
+    Header,
+    LeftNavbar,
+    CreatePost,
   },
 };
 </script>
@@ -66,6 +27,6 @@ export default {
 @import "./styles/main.scss";
 
 .post {
-  @include flex-column;
+  @include flex-global;
 }
 </style>

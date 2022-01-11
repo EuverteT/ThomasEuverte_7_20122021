@@ -26,14 +26,19 @@ const routes = [
     component: () => import('../views/Account.vue')
   },
   {
-    path: '/logoutModale',
-    name: 'LogoutModale',
-    component: () => import('../views/LogoutModale.vue')
+    path: '/allAccounts',
+    name: 'AllAccounts',
+    component: () => import('../views/AllAccounts.vue')
   },
   {
     path: '/post',
     name: 'Post',
     component: () => import('../views/Post.vue')
+  },
+  {
+    path: '/allPosts',
+    name: 'AllPosts',
+    component: () => import('../views/AllPosts.vue')
   }
 ]
 

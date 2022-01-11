@@ -14,36 +14,41 @@
       src="../assets/icon.png"
     />
     <div class="navbar__container">
-      <router-link class="navbar__container--link" to="/signup"
+      <router-link
+        v-if="this.$store.state.status = 'Non connecté'"
+        class="navbar__container--link"
+        to="/signup"
         >S'inscrire</router-link
       >
-      <router-link class="navbar__container--link" to="/login"
+      <router-link
+        v-if="this.$store.state.status = 'Non connecté'"
+        class="navbar__container--link"
+        to="/login"
         >Se connecter</router-link
       >
-      <div>
-        <button @click="disconnect" class="navbar__container--link">
-          Déconnexion
-        </button>
-        <!-- <LogoutModale /> -->
-      </div>
+      <button
+        v-if="this.$store.state.status != 'Non connecté'"
+        @click="disconnect"
+        class="navbar__container--link"
+      >
+        Déconnexion
+      </button>
+      <div></div>
     </div>
   </div>
 </template>
 
 <script>
-//import LogoutModale from "../views/LogoutModale.vue"; à modifier pour que la deconnexion se fasse au clic sur OUI de la modale
-
 export default {
   name: "Navbar",
-  components: {
-    //LogoutModale,
-  },
-  
+  components: {},
+
   methods: {
     disconnect() {
       localStorage.clear();
       this.$router.push("/");
     },
+
   },
 };
 </script>
@@ -70,7 +75,8 @@ export default {
       padding: 0.9rem;
 
       @include mobile {
-        padding: 0;
+        padding: 0.5;
+        margin: 1rem 0;
       }
 
       &:hover,

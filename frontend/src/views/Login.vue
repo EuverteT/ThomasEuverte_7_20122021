@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar />
+    <Header />
     <div class="login">
       <form @submit.prevent="login" class="login__form">
         <div class="login__form__input">
@@ -28,14 +28,14 @@
 
 <script>
 // @ is an alias to /src
-import Navbar from "@/components/Navbar.vue";
+import Header from "@/components/Header.vue";
 
 import axios from "axios";
 
 export default {
   name: "Login",
   components: {
-    Navbar,
+    Header,
   },
   data() {
     return {
@@ -46,21 +46,18 @@ export default {
   methods: {
     login() {
       axios
-        .post("http://localhost:3000/api/auth/login", {
+        .post("http://localhost:3000/api/user/login", {
           email: this.email,
           password: this.password,
         })
         .then((res) => {
+
           localStorage.setItem("userId", res.data.userId);
-          localStorage.setItem("firstName", res.data.firstName);
-          localStorage.setItem("lastName", res.data.lastName);
-          localStorage.setItem("email", res.data.email);
           localStorage.setItem("token", res.data.token);
-          this.$router.push("/account");
+          localStorage.setItem("isAdmin", res.data.isAdmin);
+          this.$router.push("/allPosts");
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => { console.log(error)});
     },
   },
 };
