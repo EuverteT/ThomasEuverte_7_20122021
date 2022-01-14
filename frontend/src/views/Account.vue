@@ -14,28 +14,43 @@
           </div>
         </section>
         <section>
-            <h1>Informations du compte</h1>
+          <h1>Informations du compte</h1>
           <div v-if="isAdmin === 'false'" class="welcome__Message">
-            <h2 >Bienvenue <span class="userInfo"> {{firstName }} </span> <span class="userInfo"> {{lastName }} </span>,</h2>
+            <h2>
+              Bienvenue <span class="userInfo"> {{ firstName }} </span>
+              <span class="userInfo"> {{ lastName }} </span>,
+            </h2>
           </div>
-          
+
           <div class="welcome__Message">
-            <p>Prénom: <span class="userInfo"> {{firstName }} </span></p>
+            <p>
+              Prénom: <span class="userInfo"> {{ firstName }} </span>
+            </p>
           </div>
           <div class="welcome__Message">
-            <p>Nom: <span class="userInfo"> {{lastName }} </span></p>
+            <p>
+              Nom: <span class="userInfo"> {{ lastName }} </span>
+            </p>
           </div>
           <div class="welcome__Message">
-            <p>Email: <span class="userInfo"> {{email }} </span></p>
+            <p>
+              Email: <span class="userInfo"> {{ email }} </span>
+            </p>
           </div>
           <div class="welcome__Message">
-            <p>Identifiant utilisateur: <span class="userInfo"> {{ userId }} </span></p>
+            <p>
+              Identifiant utilisateur:
+              <span class="userInfo"> {{ id }} </span>
+            </p>
           </div>
           <div v-if="isAdmin === 'false'" class="welcome__Message">
             <p>Vous n'ếtes pas administrateur du site.</p>
-            <p>Vous pouvez le contacter par mail à l'adresse <span class="userInfo">admin@admin.fr</span></p>
+            <p>
+              Vous pouvez le contacter par mail à l'adresse
+              <span class="userInfo">admin@admin.fr</span>
+            </p>
           </div>
-           <button
+          <button
             @click="deleteMyAccount()"
             class="all__article--container--deletePost"
           >
@@ -60,11 +75,11 @@ export default {
   },
   data() {
     return {
-      userId: localStorage.getItem("userId"), // si possible supprimer le stockage dans le local storage
       isAdmin: localStorage.getItem("isAdmin"),
       firstName: "",
       lastName: "",
       email: "",
+      id: "",
     };
   },
 
@@ -73,7 +88,9 @@ export default {
   },
   methods: {
     getAccount() {
-      const id = localStorage.getItem("userId");
+      
+      const id =  localStorage.getItem("userId")
+
       axios
         .get("http://localhost:3000/api/user/" + id, {
           headers: {
@@ -81,7 +98,6 @@ export default {
           },
         })
         .then((response) => {
-          
           this.email = response.data.email;
           this.firstName = response.data.firstName;
           this.lastName = response.data.lastName;
@@ -93,8 +109,7 @@ export default {
     },
 
     deleteMyAccount() {
-
-      const userId = localStorage.getItem("userId")
+      const userId = localStorage.getItem("userId");
 
       axios
         .delete("http://localhost:3000/api/user/" + userId, {
@@ -107,7 +122,7 @@ export default {
           console.log("compte supprimé");
           alert("Compte supprimé");
           this.$router.push("/");
-          
+
           return res.status(200).json({ message: "Compte supprimé" });
         })
         .catch((error) => {
@@ -138,5 +153,4 @@ export default {
 .userInfo {
   font-weight: bold;
 }
-
 </style>

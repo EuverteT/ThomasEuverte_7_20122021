@@ -1,10 +1,14 @@
 <template>
   <div class="options">
-    <HeureCourante />
-    <HeureCouranteV2 />
-
-    <router-link class="navbar__container--link" to="/account/"
-      >Mon compte</router-link
+    <div class="navbar__container--link">
+      <HeureCourante />
+    </div>
+    <p>Votre identifiant: {{ id }}</p>
+    <p>Que souhaitez-vous faire aujourd'hui?</p>
+    <a
+      class="navbar__container--link"
+      :href="'http://localhost:8080/#/user/' + id"
+      >Mon compte</a
     >
     <router-link class="navbar__container--link" to="/post"
       >Poster un article</router-link
@@ -20,19 +24,16 @@
 
 <script>
 import HeureCourante from "@/components/HeureCourante.vue";
-import HeureCouranteV2 from "@/components/HeureCouranteV2.vue";
 
 export default {
   name: "LeftNavbar",
   components: {
     HeureCourante,
-    HeureCouranteV2,
   },
-  data() {
-    return {
-      isAdmin: localStorage.getItem("isAdmin"),
-    };
-  },
+
+  data: () => ({
+    id: localStorage.getItem("userId"),
+  }),
 };
 </script>
 

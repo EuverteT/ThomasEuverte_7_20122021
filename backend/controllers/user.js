@@ -76,9 +76,13 @@ exports.login = (req, res, next) => {
             firstName: user.firstName,
             userId: user.id,
             isAdmin: user.isAdmin,
-            token: jwt.sign({ userId: user.id, isAdmin: user.isAdmin }, process.env.TOKEN, {
-              expiresIn: "2h",
-            }),
+            token: jwt.sign(
+              { userId: user.id, isAdmin: user.isAdmin },
+              process.env.TOKEN,
+              {
+                expiresIn: "2h",
+              }
+            ),
           });
         })
         .catch((error) => res.status(500).json({ error }));
@@ -88,11 +92,28 @@ exports.login = (req, res, next) => {
 };
 
 exports.getAccount = (req, res, next) => {
-  const userId = JSON.parse(req.params.id);
 
   db.user
     .findOne({
       attributes: ["id", "firstName", "lastName", "email", "isAdmin"],
+      where: { id: req.params.id },
+    })
+    .then((user) => {
+      if (!user) {
+        return res.status(401).json({ error: "Utilisateur inexistant" });
+      }
+      res.status(200).json(user);
+    })
+    .catch((error) => res.status(500).json({ error: "erreur" }));
+};
+
+exports.getOneAccount = (req, res, next) => {
+  const userId = JSON.parse(req.params.id);
+  console.log("req.params.id", req.params.id);
+
+  db.user
+    .findOne({
+      attributes: ["id", "firstName", "lastName", "email"],
       where: { id: userId },
     })
     .then((user) => {
@@ -135,7 +156,15 @@ exports.deleteAccount = (req, res, next) => {
 exports.getAllAccounts = (req, res, next) => {
   db.user
     .findAll({
-      attributes: ["id", "firstName", "lastName", "email", "createdAt", "isAdmin"],
+      order: [["createdAt", "DESC"]],
+      attributes: [
+        "id",
+        "firstName",
+        "lastName",
+        "email",
+        "createdAt",
+        "isAdmin",
+      ],
     })
     .then((users) => res.status(202).json(users))
     .catch((error) => res.status(400).json({ error: "erreur" }));

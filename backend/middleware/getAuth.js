@@ -11,12 +11,8 @@ module.exports = (req, res, next) => {
 
   if (req.headers.authorization === "" || !req.headers.authorization) {
     console.log("pas le cas req.headers.authorization");
-   console.log(req.body.headers.Authorization)
-  } 
-  
-  
-  
-  else {
+    console.log(req.body.headers.Authorization);
+  } else {
     if (req.params.id === "" || !req.params.id) {
       console.log("pas le cas req.params.id");
 
@@ -39,7 +35,7 @@ module.exports = (req, res, next) => {
           console.log(
             "______________________________________________________________________________"
           );
-  
+
           console.log(
             "________________________GET ACCESS  => TOKEN OK_(ADMIN ACCESS)____________________________________________________________"
           );
@@ -48,7 +44,7 @@ module.exports = (req, res, next) => {
           console.log(
             "______________________________________________________________________________"
           );
-  
+
           console.log(
             "________________________GET ACCESS => TOKEN OK_(USER ACCESS)_______________________________________________________________"
           );
@@ -63,7 +59,5 @@ module.exports = (req, res, next) => {
       console.log("cas req.params.id , req.params.id =", req.params.id);
       next();
     }
-    
-
   }
 };

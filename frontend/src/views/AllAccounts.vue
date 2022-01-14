@@ -4,6 +4,8 @@
     <div class="all-special">
       <LeftNavbar />
       <div class="all-right-part">
+        <h2>Les derniers utilisateurs inscrits</h2>
+
         <div v-for="user in accounts" :key="user.id">
           <div class="all__article">
             <div class="all__article--container">
@@ -20,8 +22,16 @@
               @click="deleteAccount(user)"
               class="all__article--container--deletePost"
             >
-              Supprimer
+              Supprimer le compte
             </button>
+
+          <a :href="'http://localhost:8080/#/user/' + user.id">
+            <button
+              @click="getOneAccount(user)"
+              class="all__article--container--deletePost"
+            >
+              Voir le compte
+            </button></a>
           </div>
         </div>
       </div>
@@ -68,8 +78,27 @@ export default {
         .catch((error) => console.log(error));
     },
 
+    getOneAccount(user) {
+      
+      axios
+        .get("http://localhost:3000/api/user/" + user.id, {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        })
+        .then((response) => {
+          this.email = response.data.email;
+          this.firstName = response.data.firstName;
+          this.lastName = response.data.lastName;
+          this.userId = response.data.id;
+        })
+
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
     deleteAccount(user) {
-      console.log("user.id venu du front", user.id);
       axios
         .delete("http://localhost:3000/api/user/" + user.id, {
           headers: {
@@ -96,7 +125,7 @@ export default {
   display: flex;
   justify-content: space-between;
   @include mobile {
-  flex-direction: column;
+    flex-direction: column;
   }
 }
 
@@ -114,9 +143,8 @@ export default {
     background-color: #f2f2f2;
     border: 3px solid;
     border-radius: 10px;
-    margin:1rem 5rem 1rem 0;
+    margin: 1rem 5rem 1rem 0;
     padding: 1rem;
-
 
     &--container {
       @include flex-global;
@@ -138,19 +166,15 @@ export default {
       font-weight: bold;
       font-size: 1rem;
       padding: 1rem;
-      color: $vert;
+      color: $rouge;
     }
     &--content {
       background-color: $soft-grey;
       font-weight: bold;
       padding: 1rem;
       font-size: 1rem;
+      color: $rouge;
     }
   }
 }
-
-
-
-
-
 </style>

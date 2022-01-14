@@ -25,7 +25,11 @@
         to="/login"
         >Se connecter</router-link
       >
-             <!-- Mettre uniquement quand connecté, avec en plus un accès direct Mon compte -->
+      <a
+        class="navbar__container--link"
+        :href="'http://localhost:8080/#/user/' + id"
+        >Mon compte</a
+      >
       <button
         @click="disconnect"
         class="navbar__container--link" 
@@ -41,6 +45,10 @@
 export default {
   name: "Navbar",
   components: {},
+
+  data: () => ({
+    id: localStorage.getItem("userId"),
+  }),
 
   methods: {
     disconnect() {

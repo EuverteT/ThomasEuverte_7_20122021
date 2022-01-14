@@ -7,13 +7,14 @@ const putDeleteAuth = require('../middleware/putDeleteAuth');
 
 const multer = require('../middleware/multer-config');
 
-router.post('/signup', userCtrl.signup); // OK
-router.post('/login', userCtrl.login); // OK
+router.post('/signup', userCtrl.signup);
+router.post('/login', userCtrl.login);
 
-router.get('/', getAuth, userCtrl.getAllAccounts); // OK
-router.get('/:id', getAuth, userCtrl.getAccount); // OK
+router.get('/', getAuth, userCtrl.getAllAccounts);
+router.get('/:id', getAuth, userCtrl.getAccount);
+router.get('/:id', getAuth, userCtrl.getOneAccount);
 
-router.delete('/:id', getAuth, putDeleteAuth, userCtrl.deleteAccount); // OK pour admin
+router.delete('/:id', getAuth, putDeleteAuth, userCtrl.deleteAccount);
 
 //router.put('/:id', userCtrl.modifyAccount); //facultatif
 

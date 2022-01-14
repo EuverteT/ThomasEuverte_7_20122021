@@ -9,7 +9,7 @@
           <div class="all">
             <section>
               <div class="all__title">
-                <h2>Les derniers posts</h2>
+                <h2>Les derniers articles publiés</h2>
               </div>
 
               <div
