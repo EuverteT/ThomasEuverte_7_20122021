@@ -3,19 +3,23 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 exports.signup = (req, res, next) => {
+  const email = req.body.email;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const password = req.body.password;
 
-const email = req.body.email;
-const firstName = req.body.firstName;
-const lastName = req.body.lastName;
-const password = req.body.password;
-
-
-if( email == null || email == '' ||
-firstName == null || firstName == ''||
-lastName == null || lastName == ''||
-password == null || password == '') {
-  return res.status(400).json({ error: 'Formulaire incomplet' });
-} 
+  if (
+    email == null ||
+    email == "" ||
+    firstName == null ||
+    firstName == "" ||
+    lastName == null ||
+    lastName == "" ||
+    password == null ||
+    password == ""
+  ) {
+    return res.status(400).json({ error: "Formulaire incomplet" });
+  }
 
   db.user
     .findOne({
@@ -45,14 +49,12 @@ password == null || password == '') {
 };
 
 exports.login = (req, res, next) => {
-
   const email = req.body.email;
   const password = req.body.password;
-  
-  if( email == null || email == '' ||
-  password == null || password == '') {
-    return res.status(400).json({ error: 'Champs manquants' });
-  } 
+
+  if (email == null || email == "" || password == null || password == "") {
+    return res.status(400).json({ error: "Champs manquants" });
+  }
 
   db.user
     .findOne({ where: { email: req.body.email } })
@@ -74,7 +76,7 @@ exports.login = (req, res, next) => {
             firstName: user.firstName,
             userId: user.id,
             isAdmin: user.isAdmin,
-            token: jwt.sign({ userId: user.id }, process.env.TOKEN, {
+            token: jwt.sign({ userId: user.id, isAdmin: user.isAdmin }, process.env.TOKEN, {
               expiresIn: "2h",
             }),
           });
@@ -106,7 +108,7 @@ exports.modifyAccount = (req, res, next) => {};
 
 exports.deleteAccount = (req, res, next) => {
   const userId = JSON.parse(req.params.id);
-  console.log("req.params.id", req.params.id)
+  console.log("req.params.id", req.params.id);
 
   db.user
     .findOne({
@@ -116,9 +118,7 @@ exports.deleteAccount = (req, res, next) => {
 
     .then((user) => {
       if (!user) {
-        return res
-          .status(401)
-          .json({ error: "Utilisateur inexistant" });
+        return res.status(401).json({ error: "Utilisateur inexistant" });
       }
       db.user
         .destroy({

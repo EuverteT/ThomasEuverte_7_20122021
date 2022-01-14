@@ -9,7 +9,7 @@ export default {
   name: "HeureCourante",
   
   created() {
-    setInterval(() => this.$forceUpdate(), 60000);
+    setInterval(() => this.$forceUpdate(), 60000); //tester avec le statut connecté
   },
   methods: {
     heureCourante() {

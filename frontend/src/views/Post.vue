@@ -20,7 +20,11 @@ export default {
     LeftNavbar,
     CreatePost,
   },
+
+  
 };
+
+
 </script>
 
 <style lang="scss" scoped>

@@ -15,21 +15,20 @@
     />
     <div class="navbar__container">
       <router-link
-        v-if="this.$store.state.status = 'Non connecté'"
         class="navbar__container--link"
         to="/signup"
         >S'inscrire</router-link
       >
+
       <router-link
-        v-if="this.$store.state.status = 'Non connecté'"
         class="navbar__container--link"
         to="/login"
         >Se connecter</router-link
       >
+             <!-- Mettre uniquement quand connecté, avec en plus un accès direct Mon compte -->
       <button
-        v-if="this.$store.state.status != 'Non connecté'"
         @click="disconnect"
-        class="navbar__container--link"
+        class="navbar__container--link" 
       >
         Déconnexion
       </button>

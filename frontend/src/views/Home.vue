@@ -100,6 +100,8 @@ export default {
     transform: rotate(360deg);
   }
 }
+
+
 @keyframes spinner-opacity-logo {
   0% {
     opacity: 0;

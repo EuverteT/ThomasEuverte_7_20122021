@@ -69,20 +69,24 @@ export default {
   },
 
   methods: {
-    getAllPosts() {
+    getAllPosts() { //OK
       axios
         .get("http://localhost:3000/api/post/", {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
         })
-        .then((res) => (this.posts = res.data))
+        .then((res) => {
+          console.log("ALLPOSTS consultés")
+          this.posts = res.data
+        })
+
         .catch((error) => {
           console.log(error);
         });
     },
 
-    deletePost(post) {
+    deletePost(post) { //Mettre en place la vérif propriétaire
       axios
         .delete("http://localhost:3000/api/post/" + post.id, {
           headers: {

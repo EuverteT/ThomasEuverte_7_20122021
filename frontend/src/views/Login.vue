@@ -51,10 +51,9 @@ export default {
           password: this.password,
         })
         .then((res) => {
-
           localStorage.setItem("userId", res.data.userId);
           localStorage.setItem("token", res.data.token);
-          localStorage.setItem("isAdmin", res.data.isAdmin);
+          localStorage.setItem("isAdmin", res.data.isAdmin); // faire une méthode isAdminByToken ?
           this.$router.push("/allPosts");
         })
         .catch((error) => { console.log(error)});

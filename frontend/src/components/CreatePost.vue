@@ -33,7 +33,7 @@ export default {
 
   methods: {
     createPost() {
-      const connectedId = JSON.parse(localStorage.getItem("userId"));
+      const connectedId = JSON.parse(localStorage.getItem("userId")); // faire un méthode getIdbyToken?
 
       axios
         .post("http://localhost:3000/api/post", {
@@ -47,10 +47,12 @@ export default {
             "Content-Type": "application/json",
           },
         })
-        .then((res) => { console.log("message créé!", res);
+        .then( (res) => {
+          console.log("POST effectué");
           if (this.$route.path === "/allPosts") {
             window.location.reload();
           } else this.$router.push("/allPosts");
+          res.status(200).json({ message: "Post effectué" });
         })
         .catch((error) => {
           console.log(error);

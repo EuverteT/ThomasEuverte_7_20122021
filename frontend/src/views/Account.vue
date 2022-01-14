@@ -13,10 +13,10 @@
             <p>Sélectionner une action sur la barre de gauche.</p>
           </div>
         </section>
-        <section v-else>
+        <section>
             <h1>Informations du compte</h1>
-          <div class="welcome__Message">
-            <h2>Bienvenue <span class="userInfo"> {{firstName }} </span> <span class="userInfo"> {{lastName }} </span>,</h2>
+          <div v-if="isAdmin === 'false'" class="welcome__Message">
+            <h2 >Bienvenue <span class="userInfo"> {{firstName }} </span> <span class="userInfo"> {{lastName }} </span>,</h2>
           </div>
           
           <div class="welcome__Message">
@@ -31,7 +31,7 @@
           <div class="welcome__Message">
             <p>Identifiant utilisateur: <span class="userInfo"> {{ userId }} </span></p>
           </div>
-          <div class="welcome__Message">
+          <div v-if="isAdmin === 'false'" class="welcome__Message">
             <p>Vous n'ếtes pas administrateur du site.</p>
             <p>Vous pouvez le contacter par mail à l'adresse <span class="userInfo">admin@admin.fr</span></p>
           </div>
@@ -54,7 +54,7 @@ export default {
   },
   data() {
     return {
-      userId: localStorage.getItem("userId"),
+      userId: localStorage.getItem("userId"), // si possible supprimer le stockage dans le local storage
       isAdmin: localStorage.getItem("isAdmin"),
       firstName: "",
       lastName: "",
@@ -79,7 +79,6 @@ export default {
           this.email = response.data.email;
           this.firstName = response.data.firstName;
           this.lastName = response.data.lastName;
-          console.log("isAdmin?", response.data.isAdmin);
         })
 
         .catch((error) => {

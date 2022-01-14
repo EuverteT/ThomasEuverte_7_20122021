@@ -57,7 +57,11 @@ export default {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
         })
-        .then((res) => (this.accounts = res.data))
+        .then((res) => {
+                    console.log("ALLACCOUNTS consultés")
+
+          this.accounts = res.data // modifier pour envoyer moins de data depuis le back
+          }) 
         .catch((error) => console.log(error));
     },
 

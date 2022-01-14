@@ -4,10 +4,7 @@
     <HeureCouranteV2 />
 
     <router-link class="navbar__container--link" to="/account/"
-      >Informations du compte</router-link
-    >
-    <router-link class="navbar__container--link" to="/allAccounts/"
-      >Supprimer mon compte</router-link
+      >Mon compte</router-link
     >
     <router-link class="navbar__container--link" to="/post"
       >Poster un article</router-link
@@ -15,14 +12,8 @@
     <router-link class="navbar__container--link" to="/allPosts"
       >Tous les articles</router-link
     >
-    <router-link v-if="isAdmin === 'true'" class="navbar__container--link" to="/allAccounts"
-      >Supprimer un compte</router-link
-    >
-    <router-link v-if="isAdmin === 'true'" class="navbar__container--link" to="/allPosts"
-      >Supprimer un post</router-link
-    >
-    <router-link v-if="isAdmin === 'true'" class="navbar__container--link" to="/allPosts"
-      >Supprimer les posts d'un compte</router-link
+    <router-link class="navbar__container--link" to="/allAccounts"
+      >Tous les comptes</router-link
     >
   </div>
 </template>
