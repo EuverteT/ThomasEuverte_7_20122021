@@ -35,6 +35,12 @@
             <p>Vous n'ếtes pas administrateur du site.</p>
             <p>Vous pouvez le contacter par mail à l'adresse <span class="userInfo">admin@admin.fr</span></p>
           </div>
+           <button
+            @click="deleteMyAccount()"
+            class="all__article--container--deletePost"
+          >
+            Supprimer mon compte
+          </button>
         </section>
       </div>
     </div>
@@ -81,6 +87,29 @@ export default {
           this.lastName = response.data.lastName;
         })
 
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    deleteMyAccount() {
+
+      const userId = localStorage.getItem("userId")
+
+      axios
+        .delete("http://localhost:3000/api/user/" + userId, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          console.log("compte supprimé");
+          alert("Compte supprimé");
+          this.$router.push("/");
+          
+          return res.status(200).json({ message: "Compte supprimé" });
+        })
         .catch((error) => {
           console.log(error);
         });

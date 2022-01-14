@@ -21,8 +21,13 @@
   flex-direction: column;
 }
 
-//A CHECKER
+@mixin mobile {
+  @media screen and (max-width: 1025px) {
+    @content;
+  }
+}
 
+//A CHECKER
 
 @mixin flex-row {
   display: flex;
@@ -42,39 +47,17 @@
 }
 
 @mixin title-typo {
-  font-family: "Roboto";
   font-size: 1.5rem;
 }
 
 @mixin soft-typo {
-  font-family: "Roboto";
   font-size: 1.1rem;
   font-weight: 200;
   text-shadow: 1px 0 1px rgba(0, 0, 0, 0.3);
 }
 
 @mixin bold-typo {
-  font-family: "Roboto";
   font-size: 1rem;
   font-weight: 500;
   text-shadow: 1px 0 1px rgba(0, 0, 0, 0.3);
-}
-
-@mixin cool-text($color: black, $font-size: 1.8rem) {
-  font-family: Shrikhand;
-  color: $color;
-  font-size: $font-size;
-}
-
-@mixin fav-heart {
-  display: block;
-  background: -webkit-linear-gradient($colour-primary, $colour-secondary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-@mixin mobile {
-  @media screen and (max-width: 1025px) {
-    @content;
-  }
 }

@@ -134,7 +134,9 @@ exports.deleteAccount = (req, res, next) => {
 
 exports.getAllAccounts = (req, res, next) => {
   db.user
-    .findAll()
+    .findAll({
+      attributes: ["id", "firstName", "lastName", "email", "createdAt", "isAdmin"],
+    })
     .then((users) => res.status(202).json(users))
     .catch((error) => res.status(400).json({ error: "erreur" }));
 };

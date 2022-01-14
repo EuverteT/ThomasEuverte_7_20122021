@@ -114,20 +114,29 @@ export default {
 
 .all-special {
   display: flex;
+  justify-content: space-between;
+  @include mobile {
+  flex-direction: column;
+  }
 }
 
 .all-right-part {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
-  width: 100%;
+  align-self: center;
+  text-align: center;
+  width: 80%;
 }
 
 .all {
   &__article {
     background-color: #f2f2f2;
-    border: 1px solid;
-    margin: 1rem 0;
+    border: 3px solid;
+    border-radius: 10px;
+    margin:1rem 5rem 1rem 0;
     padding: 1rem;
+
 
     &--container {
       @include flex-global;
@@ -159,4 +168,6 @@ export default {
     }
   }
 }
+
+
 </style>

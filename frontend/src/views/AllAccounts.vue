@@ -4,14 +4,17 @@
     <div class="all-special">
       <LeftNavbar />
       <div class="all-right-part">
-        <div class="all__article" v-for="user in accounts" :key="user.id">
-          <div class="all__article--container">
-            <div class="all__article--container--precision">
+        <div v-for="user in accounts" :key="user.id">
+          <div class="all__article">
+            <div class="all__article--container">
               Identifiant: {{ user.id }} Prénom: {{ user.firstName }} Nom:
               {{ user.lastName }}
-              Le:
-              {{ user.createdAt }} Email: {{ user.email }}
             </div>
+            <div class="all__article--title">
+              Inscrit depuis le:
+              {{ user.createdAt }}
+            </div>
+            <div class="all__article--content">Email: {{ user.email }}</div>
             <button
               v-if="isAdmin === 'true'"
               @click="deleteAccount(user)"
@@ -58,10 +61,10 @@ export default {
           },
         })
         .then((res) => {
-                    console.log("ALLACCOUNTS consultés")
+          console.log("ALLACCOUNTS consultés");
 
-          this.accounts = res.data // modifier pour envoyer moins de data depuis le back
-          }) 
+          this.accounts = res.data;
+        })
         .catch((error) => console.log(error));
     },
 
@@ -76,7 +79,7 @@ export default {
         })
         .then(() => {
           console.log("compte supprimé");
-          window.location.reload()
+          window.location.reload();
         })
         .catch((error) => {
           console.log(error);
@@ -86,25 +89,34 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import "./styles/main.scss";
 
 .all-special {
   display: flex;
+  justify-content: space-between;
+  @include mobile {
+  flex-direction: column;
+  }
 }
 
 .all-right-part {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
-  width: 100%;
+  align-self: center;
+  text-align: center;
+  width: 80%;
 }
 
 .all {
   &__article {
     background-color: #f2f2f2;
-    border: 1px solid;
-    margin: 1rem 0;
+    border: 3px solid;
+    border-radius: 10px;
+    margin:1rem 5rem 1rem 0;
     padding: 1rem;
+
 
     &--container {
       @include flex-global;
@@ -136,4 +148,9 @@ export default {
     }
   }
 }
+
+
+
+
+
 </style>
