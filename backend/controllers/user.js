@@ -80,7 +80,7 @@ exports.login = (req, res, next) => {
               { userId: user.id, isAdmin: user.isAdmin },
               process.env.TOKEN,
               {
-                expiresIn: "2h",
+                expiresIn: "12h",
               }
             ),
           });

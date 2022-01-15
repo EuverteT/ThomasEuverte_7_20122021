@@ -14,26 +14,20 @@
       src="../assets/icon.png"
     />
     <div class="navbar__container">
-      <router-link
-        class="navbar__container--link"
-        to="/signup"
+      <router-link v-if="!id" class="navbar__container--link" to="/signup"
         >S'inscrire</router-link
       >
 
-      <router-link
-        class="navbar__container--link"
-        to="/login"
+      <router-link v-if="!id" class="navbar__container--link" to="/login"
         >Se connecter</router-link
       >
       <a
+        v-if="id"
         class="navbar__container--link"
         :href="'http://localhost:8080/#/user/' + id"
         >Mon compte</a
       >
-      <button
-        @click="disconnect"
-        class="navbar__container--link" 
-      >
+      <button v-if="id" @click="disconnect" class="navbar__container--link">
         Déconnexion
       </button>
       <div></div>
@@ -55,7 +49,6 @@ export default {
       localStorage.clear();
       this.$router.push("/");
     },
-
   },
 };
 </script>

@@ -12,24 +12,25 @@
                 <h2>Les derniers articles publiés</h2>
               </div>
 
-              <div
-                class="all__article"
-                v-for="post in posts"
-                :key="post.id"
-              >
+              <div class="all__article" v-for="post in posts" :key="post.id">
                 <div class="all__article--container">
                   <div class="all__article--container--precision">
                     Article numéro: {{ post.id }} Posté par:
                     {{ post.userId }} Le:
                     {{ post.createdAt }}
                   </div>
+
                   <button
                     v-if="isAdmin === 'true'"
-                    @click="deletePost(post)"
+                    @click="showModal = !showModal"
                     class="all__article--container--deletePost"
                   >
                     Supprimer
                   </button>
+                  <div v-show="showModal" class="modal">
+                    Etes-vous certain de vouloir supprimer?
+                    <button @click="deletePost(post)">OUI</button>
+                  </div>
                 </div>
                 <div class="all__article--title">{{ post.title }}</div>
                 <div class="all__article--content">{{ post.content }}</div>
@@ -61,6 +62,7 @@ export default {
       posts: [],
       post: "",
       isAdmin: localStorage.getItem("isAdmin"),
+      showModal: false,
     };
   },
 
@@ -69,7 +71,8 @@ export default {
   },
 
   methods: {
-    getAllPosts() { //OK
+    getAllPosts() {
+      //OK
       axios
         .get("http://localhost:3000/api/post/", {
           headers: {
@@ -77,8 +80,8 @@ export default {
           },
         })
         .then((res) => {
-          console.log("ALLPOSTS consultés")
-          this.posts = res.data
+          console.log("ALLPOSTS consultés");
+          this.posts = res.data;
         })
 
         .catch((error) => {
@@ -86,7 +89,8 @@ export default {
         });
     },
 
-    deletePost(post) { //Mettre en place la vérif propriétaire
+    deletePost(post) {
+      //Mettre en place la vérif propriétaire
       axios
         .delete("http://localhost:3000/api/post/" + post.id, {
           headers: {
@@ -116,7 +120,7 @@ export default {
   display: flex;
   justify-content: space-between;
   @include mobile {
-  flex-direction: column;
+    flex-direction: column;
   }
 }
 
@@ -134,9 +138,8 @@ export default {
     background-color: #f2f2f2;
     border: 3px solid;
     border-radius: 10px;
-    margin:1rem 5rem 1rem 0;
+    margin: 1rem 5rem 1rem 0;
     padding: 1rem;
-
 
     &--container {
       @include flex-global;
@@ -168,6 +171,4 @@ export default {
     }
   }
 }
-
-
 </style>

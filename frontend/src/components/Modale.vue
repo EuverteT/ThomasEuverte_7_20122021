@@ -1,25 +1,24 @@
 <template>
-<div id="myModal" class="modal">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <div class="modalLineOne">
-          <div>Etes-vous certain de vouloir vous déconnecter?</div>
-          <span class="close">&times;</span>
-        </div>
-        <div class="modalLineTwo">
-          <button id="yesAnswer">OUI</button>
-          <button id="noAnswer">NON</button>
-        </div>
+  <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modalLineOne">
+        <div>Etes-vous certain de vouloir vous déconnecter?</div>
+        <span class="close">&times;</span>
+      </div>
+      <div class="modalLineTwo">
+        <button @click="deleteAccount(user)">OUI</button> 
+        <button id="noAnswer">NON</button>
       </div>
     </div>
+    <!-- @click="deletePost(post)" -->
+  </div>
 </template>
-
 
 <script>
 export default {
-    name: "Modale",
-}
-
+  name: "Modale",
+};
 </script>
 
 <style scoped lang="scss">
@@ -78,6 +77,4 @@ export default {
   display: flex;
   justify-content: space-around;
 }
-
-
 </style>
