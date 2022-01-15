@@ -63,7 +63,7 @@ export default {
 
   &__container {
     display: flex;
-    @include mobile {
+    @include tablet {
       flex-direction: column;
     }
 
@@ -74,9 +74,13 @@ export default {
       font-weight: bold;
       padding: 0.9rem;
 
-      @include mobile {
+      @include tablet {
         padding: 0.5;
         margin: 1rem 0;
+      }
+
+      @include mobile {
+        padding: 0;
       }
 
       &:hover,

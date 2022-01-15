@@ -37,7 +37,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import "./styles/main.scss";
 
 .options {
@@ -45,5 +45,9 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+
+p {
+  margin: 0.5rem;
 }
 </style>

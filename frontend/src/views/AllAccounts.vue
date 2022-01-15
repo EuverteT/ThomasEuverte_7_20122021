@@ -19,20 +19,33 @@
             <div class="all__article--content">Email: {{ user.email }}</div>
             <button
               v-if="isAdmin === 'true'"
-              @click="deleteAccount(user)"
+              @click="showModal = !showModal"
               class="all__article--container--deletePost"
             >
               Supprimer le compte
             </button>
 
-            
-              <!-- <button
+            <div v-show="showModal" class="modal" id="modal">
+              <div class="modal-content">
+                <div class="modalLineOne">
+                  Etes-vous certain de vouloir supprimer le compte? Cette action
+                  est irréversible.
+                </div>
+                <div class="modalLineTwo">
+                  <button id="yesAnswer" @click="deleteAccount(user)">
+                    OUI
+                  </button>
+                  <button id="noAnswer" @click="closeModal()">NON</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- <button
                 @click="getOneAccount(user)"
                 class="all__article--container--deletePost"
               >
                 Voir le compte
               </button> -->
-            
           </div>
         </div>
       </div>
@@ -125,7 +138,7 @@ export default {
 .all-special {
   display: flex;
   justify-content: space-between;
-  @include mobile {
+  @include tablet {
     flex-direction: column;
   }
 }

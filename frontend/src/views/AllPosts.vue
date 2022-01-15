@@ -30,7 +30,7 @@
                   <div v-show="showModal" class="modal" id="modal">
                     <div class="modal-content">
                       <div class="modalLineOne">
-                        Etes-vous certain de vouloir supprimer?
+                        Etes-vous certain de vouloir supprimer cet article?
                       </div>
                       <div class="modalLineTwo">
                         <button id="yesAnswer" @click="deletePost(post)">
@@ -170,10 +170,18 @@ export default {
 <style lang="scss">
 @import "./styles/main.scss";
 
+
+h1 {
+  @include mobile {
+    display: none;
+  }
+}
+
+
 .all-special {
   display: flex;
   justify-content: space-between;
-  @include mobile {
+  @include tablet {
     flex-direction: column;
   }
 }

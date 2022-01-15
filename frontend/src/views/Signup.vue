@@ -101,7 +101,7 @@ export default {
     border-radius: 5px;
     padding: 3rem 0;
 
-    @include mobile {
+    @include tablet {
       width: 85%;
     }
 

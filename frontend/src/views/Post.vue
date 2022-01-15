@@ -27,10 +27,14 @@ export default {
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 @import "./styles/main.scss";
 
 .post {
   @include flex-global;
+  
+  @include mobile {
+    flex-direction: column;
+  }
 }
 </style>

@@ -57,7 +57,7 @@ export default {
 .welcomeAnim {
   display: flex;
   width: 100%;
-  @include mobile {
+  @include tablet {
     flex-direction: column;
   }
 }
@@ -66,6 +66,11 @@ export default {
   font-size: 1.5rem;
   font-weight: bold;
   margin: 0 5rem 5rem 2rem;
+
+  @include mobile {
+      font-size: 1rem;
+
+  }
 }
 
 .home {
@@ -74,7 +79,7 @@ export default {
     width: 50%;
     animation: spinner-rotate-logo 3000ms linear infinite;
     margin: 5rem;
-    @include mobile {
+    @include tablet {
       display: none;
       animation: none;
     }
@@ -83,7 +88,7 @@ export default {
     max-width: 400px;
     width: 25%;
     animation: spinner-opacity-logo 3000ms linear infinite;
-    @include mobile {
+    @include tablet {
       animation: spinner-opacity2-logo 4000ms linear infinite;
       width: 100%;
       max-height: 200px;

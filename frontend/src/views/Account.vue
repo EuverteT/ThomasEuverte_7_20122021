@@ -138,6 +138,10 @@ export default {
 
 .account {
   @include flex-global;
+
+  @include mobile {
+    flex-direction: column;
+  }
 }
 
 .welcome {

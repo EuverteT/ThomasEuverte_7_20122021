@@ -5,7 +5,7 @@
   flex-direction: column;
   width: 75%;
   margin: 0 5rem;
-  @include mobile {
+  @include tablet {
     margin: 0 1rem;
   }
 }
@@ -21,11 +21,18 @@
   flex-direction: column;
 }
 
-@mixin mobile {
+@mixin tablet {
   @media screen and (max-width: 1025px) {
     @content;
   }
 }
+
+@mixin mobile {
+  @media screen and (max-width: 450px) {
+    @content;
+  }
+}
+
 
 //A CHECKER
 

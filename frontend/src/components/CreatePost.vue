@@ -73,5 +73,10 @@ export default {
   &__items {
     @include flex-column;
   }
+
+  
 }
+
+
+
 </style>
