@@ -25,13 +25,14 @@
               Supprimer le compte
             </button>
 
-          <a :href="'http://localhost:8080/#/user/' + user.id">
-            <button
-              @click="getOneAccount(user)"
-              class="all__article--container--deletePost"
-            >
-              Voir le compte
-            </button></a>
+            
+              <!-- <button
+                @click="getOneAccount(user)"
+                class="all__article--container--deletePost"
+              >
+                Voir le compte
+              </button> -->
+            
           </div>
         </div>
       </div>
@@ -78,25 +79,25 @@ export default {
         .catch((error) => console.log(error));
     },
 
-    getOneAccount(user) {
-      
-      axios
-        .get("http://localhost:3000/api/user/" + user.id, {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        })
-        .then((response) => {
-          this.email = response.data.email;
-          this.firstName = response.data.firstName;
-          this.lastName = response.data.lastName;
-          this.userId = response.data.id;
-        })
+    // getOneAccount(user) {
+    //   axios
+    //     .get("http://localhost:3000/api/user/" + user.id, {
+    //       headers: {
+    //         Authorization: "Bearer " + localStorage.getItem("token"),
+    //       },
+    //     })
+    //     .then((response) => {
+    //       this.email = response.data.email;
+    //       this.firstName = response.data.firstName;
+    //       this.lastName = response.data.lastName;
+    //       this.userId = response.data.id;
+    //       this.$router.push('/user/' + user.id);
+    //     })
 
-        .catch((error) => {
-          console.log(error);
-        });
-    },
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // },
 
     deleteAccount(user) {
       axios

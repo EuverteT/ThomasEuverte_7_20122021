@@ -5,11 +5,11 @@ const commentCtrl = require('../controllers/comment');
 const getAuth = require('../middleware/getAuth');
 const putDeleteAuth = require('../middleware/putDeleteAuth');
 
-router.post('/:postId', getAuth, commentCtrl.createComment);
+//router.post('/:postId', getAuth, commentCtrl.createComment); // en cours
 
-router.get('/:postId', getAuth, commentCtrl.getAllComments);
+//router.get('/:postId', getAuth, commentCtrl.getAllComments); // en cours
 
-router.delete('/:commentId', putDeleteAuth, commentCtrl.deleteComment);
+//router.delete('/:commentId', putDeleteAuth, commentCtrl.deleteComment); // en cours
 
 
 module.exports = router;
