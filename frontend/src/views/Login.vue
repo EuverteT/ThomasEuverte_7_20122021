@@ -67,8 +67,13 @@ export default {
 
 .login {
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10rem;
+
+  @include tablet {
+    margin-top: 0;
+  }
 
   &__form {
     @include flex-column;

@@ -10,7 +10,7 @@
         v-model="content"
         placeholder="Que souhaitez vous partager?"
         rows="5"
-        cols="50"
+        cols="5"
       ></textarea>
       <button type="submit">Publier</button>
     </form>
@@ -66,8 +66,13 @@ export default {
 @import "./styles/main.scss";
 
 .createpost {
-
+  display: flex;
   border: solid 1px;
+  width: 100%;
+
+  @include tablet {
+    width: 100%;
+  }
 
   @include flex-right-part;
   &__items {

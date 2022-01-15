@@ -63,12 +63,14 @@ export default {
 }
 
 .welcomeMessage {
+
   font-size: 1.5rem;
   font-weight: bold;
   margin: 0 5rem 5rem 2rem;
 
   @include mobile {
       font-size: 1rem;
+      margin: 0 2rem 2rem 2rem;
 
   }
 }

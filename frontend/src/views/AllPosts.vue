@@ -170,14 +170,6 @@ export default {
 <style lang="scss">
 @import "./styles/main.scss";
 
-
-h1 {
-  @include mobile {
-    display: none;
-  }
-}
-
-
 .all-special {
   display: flex;
   justify-content: space-between;
@@ -223,11 +215,13 @@ h1 {
       font-weight: bold;
       font-size: 1rem;
       padding: 1rem;
-      color: $vert;
+      color: $rouge;
     }
     &--content {
       background-color: $soft-grey;
       font-weight: bold;
+      color: $rouge;
+
       padding: 1rem;
       font-size: 1rem;
     }
@@ -270,5 +264,4 @@ h1 {
   display: flex;
   justify-content: space-around;
 }
-
 </style>

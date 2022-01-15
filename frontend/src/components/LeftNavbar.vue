@@ -1,23 +1,23 @@
 <template>
   <div class="options">
-    <div class="navbar__container--link">
+    <div class="special-desktop navbar__container--link">
       <HeureCourante />
     </div>
-    <p>Votre identifiant: {{ id }}</p>
+    <p class="special-desktop">Votre identifiant: {{ id }}</p>
     <p>Que souhaitez-vous faire aujourd'hui?</p>
     <a
       class="navbar__container--link"
       :href="'http://localhost:8080/#/user/' + id"
-      >Mon compte</a
+      >Consulter mon compte</a
     >
     <router-link class="navbar__container--link" to="/post"
       >Poster un article</router-link
     >
     <router-link class="navbar__container--link" to="/allPosts"
-      >Tous les articles</router-link
+      >Voir tous les articles</router-link
     >
     <router-link class="navbar__container--link" to="/allAccounts"
-      >Tous les comptes</router-link
+      >Voir les comptes</router-link
     >
   </div>
 </template>
@@ -49,5 +49,11 @@ export default {
 
 p {
   margin: 0.5rem;
+}
+
+.special-desktop {
+  @include mobile {
+    display: none;
+  }
 }
 </style>
