@@ -1,23 +1,33 @@
 <template>
   <div id="myModal" class="modal">
-    <!-- Modal content -->
     <div class="modal-content">
       <div class="modalLineOne">
         <div>Etes-vous certain de vouloir vous déconnecter?</div>
-        <span class="close">&times;</span>
+        <span @click="closeModal" class="close">&times;</span>
       </div>
       <div class="modalLineTwo">
-        <button @click="deleteAccount(user)">OUI</button> 
-        <button id="noAnswer">NON</button>
+        <button @click="disconnect">OUI</button>
+        <button @click="closeModal">NON</button>
       </div>
     </div>
-    <!-- @click="deletePost(post)" -->
   </div>
 </template>
 
 <script>
 export default {
-  name: "Modale",
+  name: "LogoutModale",
+
+  methods: {
+    disconnect() {
+      localStorage.clear();
+      this.$router.push("/");
+    },
+
+    closeModal() {
+      var modal = document.getElementById("myModal");
+      modal.style.display = "none";
+    },
+  },
 };
 </script>
 

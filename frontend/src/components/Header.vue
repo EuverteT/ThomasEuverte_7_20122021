@@ -27,29 +27,31 @@
         :href="'http://localhost:8080/#/user/' + id"
         >Mon compte</a
       >
-      <button v-if="id" @click="disconnect" class="navbar__container--link">
+      <button
+        v-if="id"
+        @click="showModal = !showModal"
+        class="navbar__container--link"
+      >
         Déconnexion
       </button>
-      <div></div>
+      <LogoutModale v-show="showModal" class="modal" />
     </div>
   </div>
 </template>
 
 <script>
+import LogoutModale from "@/components/LogoutModale.vue";
+
 export default {
   name: "Navbar",
-  components: {},
+  components: {
+    LogoutModale,
+  },
 
   data: () => ({
     id: localStorage.getItem("userId"),
+    showModal: false,
   }),
-
-  methods: {
-    disconnect() {
-      localStorage.clear();
-      this.$router.push("/");
-    },
-  },
 };
 </script>
 
