@@ -12,10 +12,10 @@ router.post('/login', userCtrl.login);
 
 router.get('/', getAuth, userCtrl.getAllAccounts);
 router.get('/:id', getAuth, userCtrl.getAccount);
-router.get('/:id', getAuth, userCtrl.getOneAccount);
 
 router.delete('/:id', getAuth, putDeleteAuth, userCtrl.deleteAccount);
 
+//router.get('/:id', getAuth, userCtrl.getOneAccount); //facultatif
 //router.put('/:id', userCtrl.modifyAccount); //facultatif
 
 

@@ -88,8 +88,7 @@ export default {
   },
   methods: {
     getAccount() {
-      
-      const id =  localStorage.getItem("userId")
+      const id = localStorage.getItem("userId");
 
       axios
         .get("http://localhost:3000/api/user/" + id, {
@@ -120,6 +119,7 @@ export default {
         })
         .then((res) => {
           console.log("compte supprimé");
+          localStorage.clear();
           alert("Compte supprimé");
           this.$router.push("/");
 
