@@ -21,25 +21,13 @@
                   </div>
 
                   <button
-                    v-if="isAdmin === 'true'"
-                    @click="showModal = !showModal"
+                    v-if="isAdmin === 'true' || post.userId == userId"
+                    @click="deletePost(post)"
                     class="all__article--container--deletePost"
                   >
                     Supprimer
                   </button>
-                  <div v-show="showModal" class="modal" id="modal">
-                    <div class="modal-content">
-                      <div class="modalLineOne">
-                        Etes-vous certain de vouloir supprimer cet article?
-                      </div>
-                      <div class="modalLineTwo">
-                        <button id="yesAnswer" @click="deletePost(post)">
-                          OUI
-                        </button>
-                        <button id="noAnswer" @click="closeModal()">NON</button>
-                      </div>
-                    </div>
-                  </div>
+                  
                 </div>
                 <div class="all__article--title">{{ post.title }}</div>
                 <div class="all__article--content">
@@ -84,8 +72,8 @@ export default {
       posts: [],
       post: "",
       isAdmin: localStorage.getItem("isAdmin"),
-      showModal: false,
       id: "",
+      userId: localStorage.getItem("userId"),
       //showComment: false,
       //comments: [],
     };
@@ -97,10 +85,7 @@ export default {
   },
 
   methods: {
-    closeModal() {
-      var modal = document.getElementById("modal");
-      modal.style.display = "none";
-    },
+    
 
     // getAllComments(post) {
     //   const userId = localStorage.getItem("userId");
@@ -144,7 +129,7 @@ export default {
     },
 
     deletePost(post) {
-      //Mettre en place la vérif propriétaire
+
       axios
         .delete("http://localhost:3000/api/post/" + post.id, {
           headers: {
@@ -228,40 +213,5 @@ export default {
   }
 }
 
-.modal {
-  //display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-}
 
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  color: black;
-  font-weight: bold;
-}
-
-.modalLineOne {
-  display: flex;
-  justify-content: space-between;
-}
-
-.modalLineOne {
-  align-self: center;
-}
-
-.modalLineTwo {
-  display: flex;
-  justify-content: space-around;
-}
 </style>
