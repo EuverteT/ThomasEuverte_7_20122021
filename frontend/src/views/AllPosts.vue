@@ -15,8 +15,10 @@
               <div class="all__article" v-for="post in posts" :key="post.id">
                 <div class="all__article--container">
                   <div class="all__article--container--precision">
-                    Article numéro: {{ post.id }} Posté par:
-                    {{ post.userId }} Le:
+                    Article numéro: {{ post.id }}</div>
+                  <div class="all__article--container--precision">Posté par: {{ post.userId }}</div>
+                  <div>
+                    Le:
                     {{ post.createdAt }}
                   </div>
 
@@ -27,7 +29,6 @@
                   >
                     Supprimer
                   </button>
-                  
                 </div>
                 <div class="all__article--title">{{ post.title }}</div>
                 <div class="all__article--content">
@@ -85,8 +86,6 @@ export default {
   },
 
   methods: {
-    
-
     // getAllComments(post) {
     //   const userId = localStorage.getItem("userId");
     //   console.log("userId", userId);
@@ -129,7 +128,6 @@ export default {
     },
 
     deletePost(post) {
-
       axios
         .delete("http://localhost:3000/api/post/" + post.id, {
           headers: {
@@ -158,7 +156,7 @@ export default {
 .all-special {
   display: flex;
   justify-content: space-between;
-  @include tablet {
+  @include mobile {
     flex-direction: column;
   }
 }
@@ -181,8 +179,7 @@ export default {
     padding: 1rem;
 
     &--container {
-      @include flex-global;
-      background-color: $hard-grey;
+      @include flex-column;
       font-weight: bold;
       font-size: 1rem;
       padding: 1rem;
@@ -190,9 +187,10 @@ export default {
 
       &--deletePost {
         background-color: $soft-grey;
+        max-width: 100px;
         padding: 1rem;
         color: black;
-        text-align: right;
+        @include shadow
       }
     }
     &--title {
@@ -200,18 +198,13 @@ export default {
       font-weight: bold;
       font-size: 1rem;
       padding: 1rem;
-      color: $rouge;
     }
     &--content {
       background-color: $soft-grey;
       font-weight: bold;
-      color: $rouge;
-
       padding: 1rem;
       font-size: 1rem;
     }
   }
 }
-
-
 </style>

@@ -4,6 +4,7 @@
   flex-wrap: wrap;
   flex-direction: column;
   width: 75%;
+  max-width: 500px;
   margin: 0 5rem;
   @include tablet {
     margin: 0 1rem;

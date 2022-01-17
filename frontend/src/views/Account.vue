@@ -137,7 +137,7 @@ export default {
 @import "./styles/main.scss";
 
 .account {
-  @include flex-global;
+  display: flex;
 
   @include mobile {
     flex-direction: column;

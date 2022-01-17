@@ -122,7 +122,8 @@ export default {
 .all-special {
   display: flex;
   justify-content: space-between;
-  @include tablet {
+
+  @include mobile {
     flex-direction: column;
   }
 }
@@ -146,7 +147,6 @@ export default {
 
     &--container {
       @include flex-global;
-      background-color: $hard-grey;
       font-weight: bold;
       font-size: 1rem;
       padding: 1rem;
@@ -164,14 +164,12 @@ export default {
       font-weight: bold;
       font-size: 1rem;
       padding: 1rem;
-      color: $rouge;
     }
     &--content {
       background-color: $soft-grey;
       font-weight: bold;
       padding: 1rem;
       font-size: 1rem;
-      color: $rouge;
     }
   }
 }

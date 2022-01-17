@@ -47,7 +47,7 @@ export default {
             "Content-Type": "application/json",
           },
         })
-        .then( (res) => {
+        .then((res) => {
           console.log("POST effectué");
           if (this.$route.path === "/allPosts") {
             window.location.reload();
@@ -69,7 +69,7 @@ export default {
   display: flex;
   border: solid 1px;
   width: 100%;
-
+  align-items: center;
   @include tablet {
     width: 100%;
   }
@@ -78,10 +78,5 @@ export default {
   &__items {
     @include flex-column;
   }
-
-  
 }
-
-
-
 </style>

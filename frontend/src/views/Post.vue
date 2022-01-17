@@ -31,7 +31,8 @@ export default {
 @import "./styles/main.scss";
 
 .post {
-  @include flex-global;
+  display: flex;
+  
   
   @include mobile {
     flex-direction: column;
