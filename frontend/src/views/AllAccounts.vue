@@ -118,7 +118,7 @@ export default {
         })
         .then(() => {
           console.log("compte supprimé");
-          window.location.reload();
+          this.$router.push("/AllPosts");
         })
         .catch((error) => {
           console.log(error);
