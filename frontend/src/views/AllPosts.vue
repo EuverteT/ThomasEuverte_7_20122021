@@ -15,14 +15,13 @@
               <div class="all__article" v-for="post in posts" :key="post.id">
                 <div class="all__article--container">
                   <div class="all__article--container--precision">
-                    Article numéro: {{ post.id }}
+                    Article numéro: <span class="precision-typo">{{ post.id }} </span>
                   </div>
                   <div class="all__article--container--precision">
-                    Posté par: {{ post.userId }}
-                  </div>
-                  <div>
+                    Posté par: <span class="precision-typo">{{ post.userId }}</span>
+                  
                     Le:
-                    {{ post.createdAt }}
+                    <span class="precision-typo">{{ post.createdAt }} </span>
                   </div>
 
                   <button
@@ -204,4 +203,11 @@ export default {
     }
   }
 }
+
+.precision-typo {
+      @include bold-typo;
+      padding: 0;
+      color: black;
+}
+
 </style>

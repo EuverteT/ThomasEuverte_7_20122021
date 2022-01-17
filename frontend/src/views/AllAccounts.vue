@@ -8,15 +8,27 @@
 
         <div v-for="user in accounts" :key="user.id">
           <div class="all__article">
-            <div class="all__article--container">
-              Identifiant: {{ user.id }} Prénom: {{ user.firstName }} Nom:
-              {{ user.lastName }}
+            <div class="all__article--container--precision">
+              Prénom:
+              <span class="precision-typo">{{ user.firstName }}</span>
+            </div>
+            <div class="all__article--container--precision">
+              Nom:
+              <span class="precision-typo">{{ user.lastName }}</span>
+            </div>
+            <div class="all__article--container--precision">
+              Identifiant:
+              <span class="precision-typo">{{ user.id }} </span>
             </div>
             <div class="all__article--title">
               Inscrit depuis le:
-              {{ user.createdAt }}
+              <span class="precision-typo">{{ user.createdAt }} </span>
             </div>
-            <div class="all__article--content">Email: {{ user.email }}</div>
+            <div class="all__article--content">
+              Email:
+              
+              <span class="precision-typo">{{ user.email }} </span>
+            </div>
             <button
               v-if="isAdmin === 'true'"
               @click="deleteAccount(user)"
@@ -118,6 +130,4 @@ export default {
 
 <style scoped lang="scss">
 @import "./styles/main.scss";
-
- 
 </style>
