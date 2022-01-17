@@ -119,58 +119,5 @@ export default {
 <style scoped lang="scss">
 @import "./styles/main.scss";
 
-.all-special {
-  display: flex;
-  justify-content: space-between;
-
-  @include mobile {
-    flex-direction: column;
-  }
-}
-
-.all-right-part {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-self: center;
-  text-align: center;
-  width: 80%;
-}
-
-.all {
-  &__article {
-    background-color: #f2f2f2;
-    border: 3px solid;
-    border-radius: 10px;
-    margin: 1rem 5rem 1rem 0;
-    padding: 1rem;
-
-    &--container {
-      @include flex-global;
-      font-weight: bold;
-      font-size: 1rem;
-      padding: 1rem;
-      color: $rouge;
-
-      &--deletePost {
-        background-color: $soft-grey;
-        padding: 1rem;
-        color: black;
-        text-align: right;
-      }
-    }
-    &--title {
-      background-color: $mid-grey;
-      font-weight: bold;
-      font-size: 1rem;
-      padding: 1rem;
-    }
-    &--content {
-      background-color: $soft-grey;
-      font-weight: bold;
-      padding: 1rem;
-      font-size: 1rem;
-    }
-  }
-}
+ 
 </style>

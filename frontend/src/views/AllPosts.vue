@@ -15,8 +15,11 @@
               <div class="all__article" v-for="post in posts" :key="post.id">
                 <div class="all__article--container">
                   <div class="all__article--container--precision">
-                    Article numéro: {{ post.id }}</div>
-                  <div class="all__article--container--precision">Posté par: {{ post.userId }}</div>
+                    Article numéro: {{ post.id }}
+                  </div>
+                  <div class="all__article--container--precision">
+                    Posté par: {{ post.userId }}
+                  </div>
                   <div>
                     Le:
                     {{ post.createdAt }}
@@ -190,20 +193,14 @@ export default {
         max-width: 100px;
         padding: 1rem;
         color: black;
-        @include shadow
+        @include shadow;
       }
     }
     &--title {
-      background-color: $mid-grey;
-      font-weight: bold;
-      font-size: 1rem;
-      padding: 1rem;
+      @include bold-typo
     }
     &--content {
-      background-color: $soft-grey;
-      font-weight: bold;
-      padding: 1rem;
-      font-size: 1rem;
+      @include soft-typo
     }
   }
 }

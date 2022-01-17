@@ -34,14 +34,20 @@
   }
 }
 
+@mixin soft-typo {
+  font-size: 1rem;
+  background-color: $soft-grey;
+  padding: 1rem;
+  font-size: 1rem;
+  text-shadow: 1px 0 1px rgba(0, 0, 0, 0.3);
+}
 
-//A CHECKER
-
-@mixin flex-row {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: center;
+@mixin bold-typo {
+  font-size: 1rem;
+  font-weight: 800;
+  text-shadow: 1px 0 1px rgba(0, 0, 0, 0.3);
+  background-color: $mid-grey;
+  padding: 1rem;
 }
 
 @mixin shadow {
@@ -54,18 +60,15 @@
   }
 }
 
+//A CHECKER
+
+@mixin flex-row {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
 @mixin title-typo {
   font-size: 1.5rem;
-}
-
-@mixin soft-typo {
-  font-size: 1.1rem;
-  font-weight: 200;
-  text-shadow: 1px 0 1px rgba(0, 0, 0, 0.3);
-}
-
-@mixin bold-typo {
-  font-size: 1rem;
-  font-weight: 500;
-  text-shadow: 1px 0 1px rgba(0, 0, 0, 0.3);
 }

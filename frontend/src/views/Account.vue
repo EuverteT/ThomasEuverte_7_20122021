@@ -18,7 +18,7 @@
           <div v-if="isAdmin === 'false'" class="welcome__Message">
             <h2>
               Bienvenue <span class="userInfo"> {{ firstName }} </span>
-              <span class="userInfo"> {{ lastName }} </span>,
+              <span class="userInfo"> {{ lastName }} </span>
             </h2>
           </div>
 

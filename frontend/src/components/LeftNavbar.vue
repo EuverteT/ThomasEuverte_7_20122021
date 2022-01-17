@@ -1,10 +1,10 @@
 <template>
   <div class="options">
-    <div class="special-desktop navbar__container--link">
+    <div class="special-desktop">
       <HeureCourante />
     </div>
     <p class="special-desktop">Votre identifiant: {{ id }}</p>
-    <p>Que souhaitez-vous faire aujourd'hui?</p>
+    <button class="special-mobile">Que souhaitez-vous faire aujourd'hui?</button>
     <a
       class="navbar__container--link"
       :href="'http://localhost:8080/#/user/' + id"
@@ -52,8 +52,18 @@ p {
 }
 
 .special-desktop {
+  @include bold-typo;
   @include mobile {
     display: none;
   }
 }
+
+.special-mobile {
+  display: none;
+  @include bold-typo;
+  @include mobile {
+    display: unset;
+  }
+}
+
 </style>

@@ -33,7 +33,7 @@ export default {
 
   methods: {
     createPost() {
-      const connectedId = JSON.parse(localStorage.getItem("userId")); // faire un méthode getIdbyToken?
+      const connectedId = JSON.parse(localStorage.getItem("userId"));
 
       axios
         .post("http://localhost:3000/api/post", {
