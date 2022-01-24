@@ -1,49 +1,44 @@
 <template>
   <div>
     <Header />
-    <div class="all-special">
-      <LeftNavbar />
-      <div class="all-right-part">
-        <h2>Les derniers utilisateurs inscrits</h2>
+    <Navbar />
+    <h2>Les derniers utilisateurs inscrits</h2>
+    <div class="data">
+      <div class="data__container" v-for="user in accounts" :key="user.id">
+        <div class="accounts--info--precision">
+          Prénom:
+          <span class="precision-typo">{{ user.firstName }}</span>
+        </div>
+        <div class="accounts--info--precision">
+          Nom:
+          <span class="precision-typo">{{ user.lastName }}</span>
+        </div>
+        <div class="accounts--info--precision">
+          Identifiant:
+          <span class="precision-typo">{{ user.id }} </span>
+        </div>
+        <div class="accounts--title">
+          Inscrit depuis le:
+          <span class="precision-typo">{{ user.createdAt }} </span>
+        </div>
+        <div class="accounts--content">
+          Email:
 
-        <div v-for="user in accounts" :key="user.id">
-          <div class="all__article">
-            <div class="all__article--container--precision">
-              Prénom:
-              <span class="precision-typo">{{ user.firstName }}</span>
-            </div>
-            <div class="all__article--container--precision">
-              Nom:
-              <span class="precision-typo">{{ user.lastName }}</span>
-            </div>
-            <div class="all__article--container--precision">
-              Identifiant:
-              <span class="precision-typo">{{ user.id }} </span>
-            </div>
-            <div class="all__article--title">
-              Inscrit depuis le:
-              <span class="precision-typo">{{ user.createdAt }} </span>
-            </div>
-            <div class="all__article--content">
-              Email:
-              
-              <span class="precision-typo">{{ user.email }} </span>
-            </div>
-            <button
-              v-if="isAdmin === 'true'"
-              @click="deleteAccount(user)"
-              class="all__article--container--deletePost"
-            >
-              Supprimer le compte
-            </button>
-            <!-- <button
+          <span class="precision-typo">{{ user.email }} </span>
+        </div>
+        <button
+          v-if="isAdmin === 'true'"
+          @click="deleteAccount(user)"
+          class="data__button"
+        >
+          Supprimer le compte
+        </button>
+        <!-- <button
                 @click="getOneAccount(user)"
-                class="all__article--container--deletePost"
+                class="accounts--info--deletePost"
               >
                 Voir le compte
               </button> -->
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -52,13 +47,13 @@
 <script>
 import axios from "axios";
 import Header from "@/components/Header.vue";
-import LeftNavbar from "@/components/LeftNavbar.vue";
+import Navbar from "@/components/Navbar.vue";
 
 export default {
   name: "AllAccounts",
   components: {
     Header,
-    LeftNavbar,
+    Navbar,
   },
   data() {
     return {
@@ -116,9 +111,12 @@ export default {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
         })
-        .then(() => {
-          console.log("compte supprimé");
-          this.$router.push("/AllPosts");
+        .then((res) => {
+          console.log("Compte supprimé");
+          if (this.$route.path === "/allAccounts") {
+            window.location.reload();
+          } else this.$router.push("/allAccounts");
+          res.status(200).json({ message: "Post supprimé" });
         })
         .catch((error) => {
           console.log(error);
@@ -130,4 +128,22 @@ export default {
 
 <style scoped lang="scss">
 @import "./styles/main.scss";
+
+.accounts {
+  
+  &--info {
+    @include flex-column;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 1rem;
+    color: $rouge;
+
+  }
+  &--title {
+    @include bold-typo;
+  }
+  &--content {
+    @include soft-typo;
+  }
+}
 </style>

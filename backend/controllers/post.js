@@ -1,8 +1,12 @@
 const db = require("../models/index");
 const jwt = require("jsonwebtoken");
+const fs = require("fs");
 
 exports.createPost = (req, res, next) => {
-  const token = req.body.headers.Authorization.split(" ")[1];
+
+  console.log("req.body", req.body)
+
+  const token = req.headers.authorization.split(" ")[1];
   const decodedToken = jwt.verify(token, process.env.TOKEN);
   const userId = decodedToken.userId;
 
@@ -13,11 +17,13 @@ exports.createPost = (req, res, next) => {
 
     .then((user) => {
       if (user) {
+
         db.post
           .create({
-            content: req.body.body.content,
-            title: req.body.body.title,
+            content: req.body.content,
+            title: req.body.title,
             userId: user.id,
+            attachment: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}`: req.body.image,
           })
           .then(() => res.status(201).json({ message: "Post créé" }))
           .catch((error) => res.status(400).json({ error: "erreur catch" }));
@@ -25,7 +31,7 @@ exports.createPost = (req, res, next) => {
         return res.status(404).json({ error: "Utilisateur non trouvé" });
       }
     })
-    .catch((error) => res.status(500).json({ error: "erreur catch" }));
+    .catch((error) => res.status(501).json({ error: "erreur catch" }));
 };
 
 exports.getAllPosts = (req, res, next) => {
@@ -61,7 +67,7 @@ exports.modifyPost = (req, res, next) => {};
 
 exports.deletePost = (req, res, next) => {
   const postId = JSON.parse(req.params.id);
-  console.log(req.params.id)
+  console.log(req.params.id);
 
   db.post
     .findOne({

@@ -23,19 +23,21 @@
         <button class="login__form__button">Valider</button>
       </form>
     </div>
+    <Footer />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import Header from "@/components/Header.vue";
-
+import Footer from "@/components/Footer.vue";
 import axios from "axios";
 
 export default {
   name: "Login",
   components: {
     Header,
+    Footer,
   },
   data() {
     return {
@@ -56,7 +58,9 @@ export default {
           localStorage.setItem("isAdmin", res.data.isAdmin); // faire une méthode isAdminByToken ?
           this.$router.push("/allPosts");
         })
-        .catch((error) => { console.log(error)});
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 };
@@ -69,23 +73,25 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10rem;
+  margin: 3rem 0 15rem 0; // voir pour une position absolu du footer? également sur toutes les pages.
 
-  @include tablet {
-    margin-top: 0;
+  @include desktop {
+    margin-top: 10rem;
   }
 
   &__form {
     @include flex-column;
     background-color: #f2f2f2;
     align-items: center;
-    width: 50%;
-    border: 3px solid #3f3d56;
+    width: 85%;
+    border: 2px solid #3f3d56;
     border-radius: 5px;
-    padding: 3rem 0;
+    padding: 1.5rem 0;
 
-    @include tablet {
-      width: 85%;
+    @include desktop {
+      width: 50%;
+      padding: 3rem 0;
+      border: 3px solid #3f3d56;
     }
 
     &__input {

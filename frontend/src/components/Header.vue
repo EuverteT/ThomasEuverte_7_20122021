@@ -62,27 +62,29 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 
   &__container {
     display: flex;
+    flex-direction: column;
+
     @include tablet {
-      flex-direction: column;
+      flex-direction: row;
     }
 
     &--link {
       color: black;
       text-decoration: none;
-      margin: 1rem;
       font-weight: bold;
-      padding: 0.9rem;
+      padding: 0.5rem;
 
       @include tablet {
-        padding: 0.5;
         margin: 1rem 0;
       }
 
-      @include mobile {
-        padding: 0;
+      @include desktop {
+        margin: 1rem;
+        padding: 0.9rem;
       }
 
       &:hover,

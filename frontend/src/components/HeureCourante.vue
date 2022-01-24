@@ -1,13 +1,6 @@
 <template>
   <div>
-    <div>
-      Bonjour, il est
-    </div>
-
-    <div class="clock">
-      {{ heureCourante() }}
-    </div>
-    
+    <div>Il est {{ heureCourante() }}</div>
   </div>
 </template>
 
@@ -32,14 +25,5 @@ export default {
 <style lang="scss">
 @import "./styles/main.scss";
 
-.clock {
-  border: 1px solid;
-  margin: 1rem;
-  padding: 0.8rem;
-  @include mobile {
-    border: none;
-    padding: 0;
-  }
-}
 
 </style>

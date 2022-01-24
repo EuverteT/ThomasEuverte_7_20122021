@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 
 require('dotenv').config();
 
@@ -17,6 +18,8 @@ app.use((req, res, next) => {
 
 app.use(express.json()); // Permet de ne plus utiliser body-parser qui est inclut à présent dans Express
 app.use(express.urlencoded({ extended: true }));
+
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/api/user', userRoutes);
 app.use('/api/post', postRoutes);

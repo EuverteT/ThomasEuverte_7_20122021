@@ -1,41 +1,35 @@
 <template>
   <div>
     <Header />
-    <div class="post">
-      <LeftNavbar />
+    <Navbar />
+    <h2>Poster votre article</h2>
+    <div class="data">
       <CreatePost />
     </div>
+    <Footer />
   </div>
 </template>
 
 <script>
 import Header from "../components/Header.vue";
-import LeftNavbar from "../components/LeftNavbar.vue";
+import Navbar from "../components/Navbar.vue";
 import CreatePost from "../components/CreatePost.vue";
+import Footer from "@/components/Footer.vue";
+
 
 export default {
   name: "Post",
   components: {
     Header,
-    LeftNavbar,
+    Navbar,
     CreatePost,
+    Footer
   },
-
-  
 };
-
-
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 @import "./styles/main.scss";
 
-.post {
-  display: flex;
-  
-  
-  @include mobile {
-    flex-direction: column;
-  }
-}
+
 </style>

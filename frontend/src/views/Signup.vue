@@ -40,19 +40,21 @@
         <button class="signup__form__button">Valider</button>
       </form>
     </div>
+    <Footer />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import Header from "@/components/Header.vue";
-
+import Footer from "@/components/Footer.vue";
 import axios from "axios";
 
 export default {
   name: "Signup",
   components: {
     Header,
+    Footer,
   },
   data() {
     return {
@@ -89,25 +91,25 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10rem;
+  margin: 3rem 0 5rem 0;
 
-  @include tablet {
-    margin-top: 0;
+  @include desktop {
+    margin-top: 10rem;
   }
 
   &__form {
     @include flex-column;
     background-color: #f2f2f2;
     align-items: center;
-    width: 50%;
-    border: 3px solid #3f3d56;
+    width: 85%;
+    border: 2px solid #3f3d56;
     border-radius: 5px;
-    padding: 3rem 0;
+    padding: 1.5rem 0;
 
-    @include tablet {
-      width: 85%;
-      padding: 1.5rem 0;
-      border: 2px solid #3f3d56;
+    @include desktop {
+      width: 50%;
+      padding: 3rem 0;
+      border: 3px solid #3f3d56;
     }
 
     &__input {

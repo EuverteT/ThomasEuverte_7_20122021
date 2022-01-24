@@ -1,7 +1,6 @@
 <template>
-  <div class="createpost">
+  <div class="data__container">
     <form @submit.prevent="createPost" class="createpost__items">
-      <h1>Poster votre article</h1>
       <label> Titre: <input v-model="title" /> </label>
       <br /><br />
       <label> Contenu: </label>
@@ -12,7 +11,12 @@
         rows="5"
         cols="5"
       ></textarea>
-      <button type="submit">Publier</button>
+
+      <input type="file" ref="file"  @change="uploadPhoto" />
+      <div v-if="imageURL.length > 0">
+        <img :src="imageURL" height="300px" width="300px" />
+      </div>
+      <button class="createpost data__button" type="submit">Publier</button>
     </form>
   </div>
 </template>
@@ -28,23 +32,32 @@ export default {
       title: this.title,
       content: this.content,
       userId: "",
+      image: "",
+      imageURL: "",
     };
   },
 
   methods: {
-    createPost() {
-      const connectedId = JSON.parse(localStorage.getItem("userId"));
+    uploadPhoto(event) {
+      this.image = event.target.files[0];
+      console.log("image", this.image);
+      this.imageURL = URL.createObjectURL(this.image);
+      console.log("imageURL", this.imageURL);
+    },
 
+    createPost() {
+      const formData = new FormData();
+
+      formData.append("title", this.title);
+      formData.append("content", this.content);
+      formData.append("attachment", this.image);
+
+    
       axios
-        .post("http://localhost:3000/api/post", {
-          body: {
-            title: this.title,
-            content: this.content,
-            userId: connectedId,
-          },
+        .post("http://localhost:3000/api/post", formData, {
           headers: {
+            "Content-Type": "multipart/form-data",
             Authorization: "Bearer " + localStorage.getItem("token"),
-            "Content-Type": "application/json",
           },
         })
         .then((res) => {
@@ -66,15 +79,6 @@ export default {
 @import "./styles/main.scss";
 
 .createpost {
-  display: flex;
-  border: solid 1px;
-  width: 100%;
-  align-items: center;
-  @include tablet {
-    width: 100%;
-  }
-
-  @include flex-right-part;
   &__items {
     @include flex-column;
   }

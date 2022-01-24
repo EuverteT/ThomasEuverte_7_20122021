@@ -1,77 +1,62 @@
 <template>
   <div>
     <Header />
-
-    <div class="account">
-      <LeftNavbar />
-      <div class="welcome">
-        <section v-if="isAdmin === 'true'">
-          <div class="welcome__Message">
-            <h1>Bienvenue Administrateur,</h1>
-          </div>
-          <div class="welcome__Message">
-            <p>Sélectionner une action sur la barre de gauche.</p>
-          </div>
-        </section>
+    <Navbar />
+    <h2>Informations du compte</h2>
+    <div class="data">
+      <div class="data__container">
         <section>
-          <h1>Informations du compte</h1>
-          <div v-if="isAdmin === 'false'" class="welcome__Message">
-            <h2>
-              Bienvenue <span class="userInfo"> {{ firstName }} </span>
-              <span class="userInfo"> {{ lastName }} </span>
-            </h2>
-          </div>
-
-          <div class="welcome__Message">
+          <div class="account__Message">
             <p>
-              Prénom: <span class="userInfo"> {{ firstName }} </span>
+              Prénom: <span class="precision-typo">{{ firstName }}</span>
             </p>
           </div>
-          <div class="welcome__Message">
+          <div class="account__Message">
             <p>
-              Nom: <span class="userInfo"> {{ lastName }} </span>
+              Nom: <span class="precision-typo"> {{ lastName }} </span>
             </p>
           </div>
-          <div class="welcome__Message">
+          <div class="account__Message">
             <p>
-              Email: <span class="userInfo"> {{ email }} </span>
+              Email: <span class="precision-typo"> {{ email }} </span>
             </p>
           </div>
-          <div class="welcome__Message">
+          <div class="account__Message">
             <p>
               Identifiant utilisateur:
-              <span class="userInfo"> {{ id }} </span>
+              <span class="precision-typo"> {{ id }} </span>
             </p>
           </div>
-          <div v-if="isAdmin === 'false'" class="welcome__Message">
+          <div v-if="isAdmin === 'false'" class="account__Message">
             <p>Vous n'ếtes pas administrateur du site.</p>
             <p>
               Vous pouvez le contacter par mail à l'adresse
-              <span class="userInfo">admin@admin.fr</span>
+              <span class="precision-typo">admin@admin.fr</span>
             </p>
           </div>
-          <button
-            @click="deleteMyAccount()"
-            class="all__article--container--deletePost"
-          >
+          <button @click="deleteMyAccount()" class="data__button">
             Supprimer mon compte
           </button>
         </section>
       </div>
     </div>
+    <Footer />
   </div>
 </template>
 
 <script>
 import Header from "../components/Header.vue";
-import LeftNavbar from "../components/LeftNavbar.vue";
+import Navbar from "../components/Navbar.vue";
+import Footer from "@/components/Footer.vue";
+
 import axios from "axios";
 
 export default {
   name: "Account",
   components: {
     Header,
-    LeftNavbar,
+    Navbar,
+    Footer,
   },
   data() {
     return {
@@ -137,24 +122,23 @@ export default {
 @import "./styles/main.scss";
 
 .account {
-  display: flex;
+  background-color: #f2f2f2;
+  border: 3px solid;
+  border-radius: 10px;
+  margin: 1rem 0;
+  padding: 1rem;
+  width: 80%;
 
-  @include mobile {
-    flex-direction: column;
+  @include tablet {
+    width: 50%;
   }
-}
-
-.welcome {
-  @include flex-right-part;
 
   &__Message {
     background-color: #f2f2f2;
     border: 1px solid;
     margin: 1rem 0;
   }
-}
 
-.userInfo {
-  font-weight: bold;
+  
 }
 </style>

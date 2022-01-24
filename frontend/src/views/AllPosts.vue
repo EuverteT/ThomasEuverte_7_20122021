@@ -1,42 +1,38 @@
 <template>
   <div>
     <Header />
-    <div class="all-special">
-      <LeftNavbar />
-      <div class="all-right-part">
-        <CreatePost />
-        <div class="account">
-          <div class="all">
-            <section>
-              <div class="all__title">
-                <h2>Les derniers articles publiés</h2>
-              </div>
+    <Navbar />
+    <div class="notOnMobile">
+      <div class="notOnMobile__title"><h2>Poster votre article</h2></div>
+      <div class="notOnMobile__createPost"><CreatePost /></div>
+    </div>
+    <h2>Les derniers articles publiés</h2>
 
-              <div class="all__article" v-for="post in posts" :key="post.id">
-                <div class="all__article--container">
-                  <div class="all__article--container--precision">
-                    Article numéro: <span class="precision-typo">{{ post.id }} </span>
-                  </div>
-                  <div class="all__article--container--precision">
-                    Posté par: <span class="precision-typo">{{ post.userId }}</span>
-                  
-                    Le:
-                    <span class="precision-typo">{{ post.createdAt }} </span>
-                  </div>
+    <section class="data">
+      <div class="data__container" v-for="post in posts" :key="post.id">
+        <div class="posts--info">
+          <div class="posts--info--precision">
+            Article numéro:
+            <span class="precision-typo">{{ post.id }} </span>
+          </div>
+          <div class="posts--info--precision">
+            Posté par:
+            <span class="precision-typo">{{ post.userId }}</span>
 
-                  <button
-                    v-if="isAdmin === 'true' || post.userId == userId"
-                    @click="deletePost(post)"
-                    class="all__article--container--deletePost"
-                  >
-                    Supprimer
-                  </button>
-                </div>
-                <div class="all__article--title">{{ post.title }}</div>
-                <div class="all__article--content">
-                  {{ post.content }}
-                </div>
-                <!-- @click="showComment = !showComment"
+            Le:
+            <span class="precision-typo">{{ post.createdAt }} </span>
+          </div>
+        </div>
+        <div class="posts--title">{{ post.title }}</div>
+        <div class="posts--content">{{ post.content }}</div>
+        <button
+          v-if="isAdmin === 'true' || post.userId == userId"
+          @click="deletePost(post)"
+          class="data__button"
+        >
+          Supprimer
+        </button>
+        <!-- @click="showComment = !showComment"
                 <button
                   
                   @click="getAllComments(post)"
@@ -47,18 +43,14 @@
                 <div v-show="showComment" class="comment">
                   Affichage?
                 </div> -->
-              </div>
-            </section>
-          </div>
-        </div>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
 <script>
 import Header from "@/components/Header.vue";
-import LeftNavbar from "@/components/LeftNavbar.vue";
+import Navbar from "@/components/Navbar.vue";
 import CreatePost from "../components/CreatePost.vue";
 
 import axios from "axios";
@@ -68,7 +60,7 @@ export default {
   components: {
     Header,
     CreatePost,
-    LeftNavbar,
+    Navbar,
   },
   data() {
     return {
@@ -155,59 +147,39 @@ export default {
 <style lang="scss">
 @import "./styles/main.scss";
 
-.all-special {
-  display: flex;
-  justify-content: space-between;
-  @include mobile {
+.notOnMobile {
+  display: none;
+
+  @include desktop {
+    display: flex;
     flex-direction: column;
+
+    &__createPost {
+      display: flex;
+      justify-content: center;
+    }
   }
 }
 
-.all-right-part {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-self: center;
-  text-align: center;
-  width: 80%;
-}
-
-.all {
-  &__article {
-    background-color: #f2f2f2;
-    border: 3px solid;
-    border-radius: 10px;
-    margin: 1rem 5rem 1rem 0;
+.posts {
+  &--info {
+    @include flex-column;
+    font-weight: bold;
+    font-size: 1rem;
     padding: 1rem;
-
-    &--container {
-      @include flex-column;
-      font-weight: bold;
-      font-size: 1rem;
-      padding: 1rem;
-      color: $rouge;
-
-      &--deletePost {
-        background-color: $soft-grey;
-        max-width: 100px;
-        padding: 1rem;
-        color: black;
-        @include shadow;
-      }
-    }
-    &--title {
-      @include bold-typo
-    }
-    &--content {
-      @include soft-typo
-    }
+    color: $rouge;
+  }
+  &--title {
+    @include bold-typo;
+  }
+  &--content {
+    @include soft-typo;
   }
 }
 
 .precision-typo {
-      @include bold-typo;
-      padding: 0;
-      color: black;
+  @include bold-typo;
+  padding: 0;
+  color: black;
 }
-
 </style>
